@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Private Client Account | Stackly Luxury Fashion</title>
+  <link rel="icon" type="image/png" href="images/logo-transparent.png" />
+
+  <!-- Google Fonts: Playfair Display (Luxury Editorial Serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            fwrd: {
+              black: '#000000',
+              charcoal: '#111111',
+              gray: '#707072',
+              lightGray: '#f8f8f8',
+              border: '#e8e8e8',
+              gold: '#c5a059'
+            }
+          },
+          letterSpacing: {
+            luxury: '0.20em',
+            tightLuxury: '0.12em',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-fwrd-charcoal font-sans antialiased selection:bg-black selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= TOP LUXURY UTILITY BAR ================= -->
+  <div class="bg-black text-white text-[10.5px] tracking-[0.14em] uppercase py-2 px-4 sm:px-8 flex justify-between items-center border-b border-neutral-900 select-none">
+    <div class="hidden lg:flex items-center space-x-3 text-neutral-400">
+      <span>SHIPPING: <strong class="text-white font-medium">US (USD $)</strong></span>
+      <span class="text-neutral-600">•</span>
+      <span>CONCIERGE: <strong class="text-white font-medium">1-888-555-STACKLY</strong></span>
+    </div>
+    <div class="w-full lg:w-auto text-center font-medium text-neutral-200 tracking-[0.16em]">
+      COMPLIMENTARY 2-DAY EXPRESS SHIPPING & FREE RETURNS ON ALL ORDERS
+    </div>
+    <div class="hidden lg:flex items-center space-x-3 text-neutral-400">
+      <span class="text-white font-medium">PRIVATE CLIENT REGISTRATION</span>
+    </div>
+  </div>
+
+  <!-- ================= STICKY MAIN HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-all shadow-[0_1px_0_0_rgba(0,0,0,0.03)]">
+    <div class="max-w-[1760px] mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 lg:gap-8">
+      
+      <!-- Left: Brand Logo -->
+      <div class="flex items-center space-x-3 sm:space-x-5 flex-shrink-0">
+        <a href="index.html" class="inline-flex items-center hover:opacity-80 transition py-0.5" aria-label="Stackly Home">
+          <img src="images/logo-transparent.png" alt="Stackly" class="h-8 sm:h-8.5 w-auto object-contain" />
+        </a>
+        <span class="hidden 2xl:inline-block text-[9.5px] tracking-[0.25em] text-neutral-400 uppercase border-l border-neutral-200 pl-4 py-0.5 font-light">
+          Client Registration
+        </span>
+      </div>
+
+      <!-- Center: Category Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-5 xl:space-x-7 text-[11.5px] font-medium tracking-[0.18em] uppercase">
+        <a href="index.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="all">All</a>
+        <a href="index.html#whats-new" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="whats-new">What's New</a>
+        <a href="clothing.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="clothing">Clothing</a>
+        <a href="dresses.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="dresses">Dresses</a>
+        <a href="shoes.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="shoes">Shoes</a>
+        <a href="bags.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="bags">Bags</a>
+        <a href="accessories.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="accessories">Accessories</a>
+        <a href="index.html#sale" class="main-nav-link text-rose-700 hover:text-rose-950 font-semibold" data-category="sale">Sale</a>
+      </nav>
+
+      <!-- Right: Back to Boutique Link -->
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="text-xs uppercase tracking-luxury text-neutral-500 hover:text-black transition flex items-center space-x-1 font-semibold">
+          <span>&larr; Return to Store</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SIGN UP SECTION ================= -->
+  <main class="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-neutral-50/60">
+    <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 bg-white shadow-xl border border-neutral-200 overflow-hidden">
+      
+      <!-- Left Column: Editorial Runway Visual & VIP Benefits -->
+      <div class="hidden md:flex flex-col justify-between p-10 bg-black text-white relative overflow-hidden">
+        <img src="images/dresses_1_a.webp" alt="Stackly Runway Membership" class="absolute inset-0 w-full h-full object-cover object-top opacity-35" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"></div>
+
+        <div class="relative z-10">
+          <div class="text-[10px] uppercase tracking-[0.25em] text-neutral-400 mb-2">BECOME A PRIVATE CLIENT</div>
+          <h2 class="font-serif text-2xl lg:text-3xl font-bold tracking-tight uppercase leading-snug">
+            Your Invitation To The Modern Salon
+          </h2>
+        </div>
+
+        <div class="relative z-10 space-y-4 my-8 text-xs text-neutral-300">
+          <div class="flex items-start space-x-3">
+            <i data-lucide="gift" class="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5"></i>
+            <span><strong>10% Off Your Inaugural Order:</strong> Use code <span class="text-white font-mono font-bold">STACKLY10</span> automatically applied upon registration.</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <i data-lucide="award" class="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5"></i>
+            <span><strong>500 Welcome Loyalty Points:</strong> Instantly credited to your private client rewards balance.</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <i data-lucide="heart" class="w-4 h-4 text-neutral-300 flex-shrink-0 mt-0.5"></i>
+            <span><strong>Curated Runway Wishlist:</strong> Synchronize your desired pieces across all luxury devices.</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <i data-lucide="compass" class="w-4 h-4 text-neutral-300 flex-shrink-0 mt-0.5"></i>
+            <span><strong>Dedicated Concierge:</strong> Personalized sizing advice and private preview invitations.</span>
+          </div>
+        </div>
+
+        <div class="relative z-10 text-[10px] tracking-luxury uppercase text-neutral-400 pt-4 border-t border-neutral-800">
+          Private Client Services: concierge@stackly.com
+        </div>
+      </div>
+
+      <!-- Right Column: Registration Form -->
+      <div class="p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="mb-6">
+            <span class="text-[10px] uppercase tracking-luxury text-neutral-400 font-semibold">EXCLUSIVE ACCESS</span>
+            <h1 class="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-tight text-black mt-1">Create Account</h1>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              Register for complimentary benefits, order tracking, and private stylist previews.
+            </p>
+          </div>
+
+          <div class="mb-5 p-3 bg-neutral-50 border border-neutral-200 text-xs text-neutral-700 flex items-center space-x-2.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-600 flex-shrink-0"></i>
+            <span><strong>Instant Access:</strong> Register with <strong>any email and password</strong> of your choice.</span>
+          </div>
+
+          <!-- Alert box for errors -->
+          <div id="signupAlert" class="hidden p-3 bg-red-50 border border-red-200 text-red-700 text-xs mb-5 flex items-center space-x-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0"></i>
+            <span id="signupAlertText">Registration error.</span>
+          </div>
+
+          <!-- Sign Up Form -->
+          <form id="signupForm" onsubmit="handleSignupSubmit(event)" class="space-y-3.5">
+            <!-- Full Name Fields -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="firstName" class="block text-[10px] font-semibold uppercase tracking-luxury text-black mb-1">
+                  First Name
+                </label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  required
+                  placeholder="Victoria"
+                  autocomplete="given-name"
+                  class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black focus:bg-white transition"
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-[10px] font-semibold uppercase tracking-luxury text-black mb-1">
+                  Last Name
+                </label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  required
+                  placeholder="Sterling"
+                  autocomplete="family-name"
+                  class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black focus:bg-white transition"
+                />
+              </div>
+            </div>
+
+            <!-- Email Address -->
+            <div>
+              <label for="signupEmail" class="block text-[10px] font-semibold uppercase tracking-luxury text-black mb-1">
+                Email Address
+              </label>
+              <input 
+                type="text" 
+                id="signupEmail" 
+                required
+                placeholder="any.email@domain.com"
+                autocomplete="email"
+                class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black focus:bg-white transition"
+              />
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+              <label for="signupPhone" class="block text-[10px] font-semibold uppercase tracking-luxury text-black mb-1">
+                Phone (For Courier Delivery Updates)
+              </label>
+              <input 
+                type="tel" 
+                id="signupPhone" 
+                placeholder="+1 (555) 000-0000"
+                autocomplete="tel"
+                class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black focus:bg-white transition"
+              />
+            </div>
+
+            <!-- Password -->
+            <div>
+              <label for="signupPassword" class="block text-[10px] font-semibold uppercase tracking-luxury text-black mb-1">
+                Password
+              </label>
+              <div class="relative">
+                <input 
+                  type="password" 
+                  id="signupPassword" 
+                  required
+                  placeholder="••••••••••••"
+                  autocomplete="new-password"
+                  class="w-full pl-3 pr-10 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black focus:bg-white transition"
+                />
+                <button 
+                  type="button" 
+                  onclick="togglePasswordVisibility('signupPassword', 'pwSignupEyeIcon')"
+                  class="absolute right-3 top-2.5 text-neutral-400 hover:text-black transition"
+                  aria-label="Toggle password visibility"
+                >
+                  <i id="pwSignupEyeIcon" data-lucide="eye" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Preferred Shopping Department -->
+            <div>
+              <label for="preferredDepartment" class="block text-[10px] font-semibold uppercase tracking-luxury text-black mb-1">
+                Preferred Department
+              </label>
+              <select 
+                id="preferredDepartment"
+                class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black focus:bg-white transition text-neutral-700"
+              >
+                <option value="clothing">Womenswear & Ready-To-Wear</option>
+                <option value="dresses">Cocktail & Evening Dresses</option>
+                <option value="shoes">Designer Shoes & Heels</option>
+                <option value="bags">Leather Goods & Handbags</option>
+                <option value="accessories">Jewelry & Accessories</option>
+              </select>
+            </div>
+
+            <!-- Terms & Consent Checkboxes -->
+            <div class="pt-1 space-y-2">
+              <label class="flex items-start space-x-2 text-[11px] text-neutral-600 cursor-pointer">
+                <input type="checkbox" id="termsCheck" required class="rounded-none border-neutral-300 text-black focus:ring-0 w-3.5 h-3.5 mt-0.5 cursor-pointer" />
+                <span>I agree to the <a href="#" class="underline text-black">Terms of Service</a> and <a href="#" class="underline text-black">Privacy Policy</a>.</span>
+              </label>
+              <label class="flex items-start space-x-2 text-[11px] text-neutral-600 cursor-pointer">
+                <input type="checkbox" id="newsletterCheck" checked class="rounded-none border-neutral-300 text-black focus:ring-0 w-3.5 h-3.5 mt-0.5 cursor-pointer" />
+                <span>Receive runway drops, editorial lookbooks, and private sale access.</span>
+              </label>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-3.5 bg-black text-white text-xs font-bold uppercase tracking-luxury hover:bg-neutral-800 transition shadow-sm mt-3 flex items-center justify-center space-x-2"
+            >
+              <span>Create Private Client Account</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </form>
+        </div>
+
+        <div class="pt-6 border-t border-neutral-100 text-center mt-5">
+          <p class="text-xs text-neutral-500">
+            Already registered with Stackly?
+          </p>
+          <a 
+            href="login.html" 
+            class="inline-block mt-1.5 text-xs uppercase tracking-luxury font-bold text-black border-b border-black pb-0.5 hover:opacity-70 transition"
+          >
+            Sign In To Existing Account &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-black text-white pt-16 pb-12 border-t border-neutral-800 text-xs">
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-neutral-800">
+      
+      <!-- Brand & VIP Concierge -->
+      <div class="lg:col-span-2 pr-4">
+        <a href="index.html" class="inline-block mb-4" aria-label="Stackly Home">
+          <img src="images/logo-white.png" alt="Stackly" class="h-8 sm:h-9 w-auto object-contain" />
+        </a>
+        <p class="text-neutral-400 leading-relaxed text-xs max-w-md mb-6">
+          Stackly is the premier global editorial destination for luxury designer fashion, offering an impeccably curated roster of world-renowned designers and emerging innovators across Clothing, Shoes, Bags, Accessories, and Dresses.
+        </p>
+        <div class="space-y-2 text-neutral-300 text-[11px] uppercase tracking-luxury">
+          <p>VIP CLIENT SERVICES: <strong class="text-white">1-888-555-STACKLY</strong></p>
+          <p>PERSONAL STYLING: <strong class="text-white">STYLING@STACKLY.COM</strong></p>
+        </div>
+      </div>
+
+      <!-- Column: Customer Service -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Client Care</h4>
+        <ul class="space-y-2.5 text-neutral-400">
+          <li><a href="#" class="hover:text-white transition">Complimentary Shipping</a></li>
+          <li><a href="#" class="hover:text-white transition">Easy Returns & Exchanges</a></li>
+          <li><a href="#" class="hover:text-white transition">Order Status & Tracking</a></li>
+          <li><a href="#" class="hover:text-white transition">Authenticity Guarantee</a></li>
+          <li><a href="#" class="hover:text-white transition">Size & Fit Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Departments -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Departments</h4>
+        <ul class="space-y-2.5 text-neutral-400">
+          <li><a href="clothing.html" class="hover:text-white transition">Designer Clothing</a></li>
+          <li><a href="shoes.html" class="hover:text-white transition">Designer Shoes</a></li>
+          <li><a href="bags.html" class="hover:text-white transition">Designer Bags</a></li>
+          <li><a href="accessories.html" class="hover:text-white transition">Designer Accessories</a></li>
+          <li><a href="dresses.html" class="hover:text-white transition">Designer Dresses</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Newsletter VIP Signup -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Private Client VIP</h4>
+        <p class="text-neutral-400 text-xs mb-4">Subscribe to receive 10% off your first purchase and private sale invitations.</p>
+        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+          <input 
+            type="email" 
+            placeholder="Enter your email address" 
+            required
+            class="w-full bg-neutral-900 border border-neutral-700 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white transition"
+          />
+          <button type="submit" class="w-full bg-white text-black py-2 text-xs uppercase tracking-luxury font-bold hover:bg-neutral-200 transition">
+            Join VIP Client
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Social Media Icons Row (All Linking to 404 Page) -->
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-8 pb-6 border-b border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="text-[10.5px] uppercase tracking-[0.22em] text-neutral-400 font-medium">Follow The Runway:</span>
+        <span class="text-xs font-serif italic text-neutral-300">@StacklyOfficial</span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <!-- Instagram -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Instagram" title="Instagram">
+          <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="TikTok" title="TikTok">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.28 8.28 0 0 0 4.85 1.54V6.84a4.83 4.83 0 0 1-1.08-.15z"/>
+          </svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Pinterest" title="Pinterest">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.546.535 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="X (Twitter)" title="X">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="YouTube" title="YouTube">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Facebook" title="Facebook">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-neutral-500 text-[11px] tracking-tightLuxury uppercase gap-4">
+      <div>&copy; 2026 STACKLY. ALL RIGHTS RESERVED. FORWARD BY ELYSE WALKER.</div>
+      <div class="flex space-x-6">
+        <a href="404.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="404.html" class="hover:text-white transition">Terms of Service</a>
+        <a href="404.html" class="hover:text-white transition">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-black text-white text-xs uppercase tracking-luxury px-6 py-3.5 shadow-2xl flex items-center space-x-3 transform translate-y-24 transition-transform duration-300">
+    <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">Account created successfully</span>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    function togglePasswordVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.setAttribute('data-lucide', 'eye-off');
+      } else {
+        input.type = 'password';
+        icon.setAttribute('data-lucide', 'eye');
+      }
+      lucide.createIcons();
+    }
+
+    function handleSignupSubmit(e) {
+      e.preventDefault();
+      const alertBox = document.getElementById('signupAlert');
+      const alertText = document.getElementById('signupAlertText');
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const phone = document.getElementById('signupPhone').value.trim();
+      const password = document.getElementById('signupPassword').value;
+
+      alertBox.classList.add('hidden');
+
+      if (!password) {
+        alertText.textContent = 'Please enter a password.';
+        alertBox.classList.remove('hidden');
+        return;
+      }
+
+      const res = signupUser({
+        name: `${firstName} ${lastName}`.trim() || 'Private Client',
+        email: email,
+        password: password,
+        phone: phone || '+1 (555) 234-5678'
+      });
+
+      if (res.success) {
+        showToast(`Welcome to Stackly Private Client, ${firstName}!`);
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 800);
+      } else {
+        alertText.textContent = res.message;
+        alertBox.classList.remove('hidden');
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastMessage');
+      if (!toast || !text) return;
+      text.textContent = message;
+      toast.classList.remove('translate-y-24');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24');
+      }, 3500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      const user = getLoggedInUser();
+      if (user) {
+        // If already logged in, redirect to dashboard
+        window.location.href = 'dashboard.html';
+      }
+    });
+  </script>
+
+  <script>
+    function handleNewsletter(e) {
+      if (e) e.preventDefault();
+      if (typeof showToast === 'function') {
+        showToast('Thank you for joining the VIP Client Salon');
+      } else {
+        alert('Thank you for subscribing to Stackly Private Client VIP.');
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+{
+  "name": "stackly-luxury-fashion-store",
+  "version": "1.0.0",
+  "description": "Stackly — Pure Frontend Multi-Page Luxury Fashion Designer E-Commerce Application (Clothing, Shoes, Bags, Accessories, Dresses)",
+  "main": "index.html",
+  "scripts": {},
+  "keywords": [
+    "stackly",
+    "luxury-fashion",
+    "ecommerce",
+    "frontend",
+    "clothing",
+    "shoes",
+    "bags",
+    "accessories",
+    "dresses",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Client Dashboard | Stackly Luxury Fashion</title>
+  <link rel="icon" type="image/png" href="images/logo-transparent.png" />
+
+  <!-- Google Fonts: Playfair Display (Luxury Editorial Serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            fwrd: {
+              black: '#000000',
+              charcoal: '#111111',
+              gray: '#707072',
+              lightGray: '#f8f8f8',
+              border: '#e8e8e8',
+              gold: '#c5a059'
+            }
+          },
+          letterSpacing: {
+            luxury: '0.20em',
+            tightLuxury: '0.12em',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-neutral-50/50 text-fwrd-charcoal font-sans antialiased selection:bg-black selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= TOP LUXURY UTILITY BAR ================= -->
+  <div class="bg-black text-white text-[10.5px] tracking-[0.14em] uppercase py-2 px-4 sm:px-8 flex justify-between items-center border-b border-neutral-900 select-none">
+    <div class="hidden lg:flex items-center space-x-3 text-neutral-400">
+      <span>TIER: <strong class="text-amber-300 font-semibold" id="topBarTier">PRIVATE CLIENT COUTURE VIP</strong></span>
+      <span class="text-neutral-600">•</span>
+      <span>CONCIERGE: <strong class="text-white font-medium">1-888-555-STACKLY</strong></span>
+    </div>
+    <div class="w-full lg:w-auto text-center font-medium text-neutral-200 tracking-[0.16em]">
+      COMPLIMENTARY WHITE-GLOVE COURIER DELIVERY & DEDICATED STYLIST ON DEMAND
+    </div>
+    <div class="hidden lg:flex items-center space-x-3 text-neutral-400">
+      <span class="text-white font-medium cursor-pointer hover:underline" onclick="logoutUser()">SIGN OUT</span>
+    </div>
+  </div>
+
+  <!-- ================= STICKY MAIN HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-all shadow-[0_1px_0_0_rgba(0,0,0,0.03)]">
+    <div class="max-w-[1760px] mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 lg:gap-8">
+      
+      <!-- Left: Brand Logo & Portal Tag -->
+      <div class="flex items-center space-x-3 sm:space-x-5 flex-shrink-0">
+        <a href="index.html" class="inline-flex items-center hover:opacity-80 transition py-0.5" aria-label="Stackly Home">
+          <img src="images/logo-transparent.png" alt="Stackly" class="h-8 sm:h-8.5 w-auto object-contain" />
+        </a>
+        <span class="hidden xl:inline-block text-[9.5px] tracking-[0.25em] text-neutral-400 uppercase border-l border-neutral-200 pl-4 py-0.5 font-light">
+          VIP Portal
+        </span>
+      </div>
+
+      <!-- Center: Category Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-5 xl:space-x-7 text-[11.5px] font-medium tracking-[0.18em] uppercase">
+        <a href="index.html" class="main-nav-link text-neutral-500 hover:text-black font-medium">All</a>
+        <a href="index.html#whats-new" class="main-nav-link text-neutral-500 hover:text-black font-medium">What's New</a>
+        <a href="clothing.html" class="main-nav-link text-neutral-500 hover:text-black font-medium">Clothing</a>
+        <a href="dresses.html" class="main-nav-link text-neutral-500 hover:text-black font-medium">Dresses</a>
+        <a href="shoes.html" class="main-nav-link text-neutral-500 hover:text-black font-medium">Shoes</a>
+        <a href="bags.html" class="main-nav-link text-neutral-500 hover:text-black font-medium">Bags</a>
+        <a href="accessories.html" class="main-nav-link text-neutral-500 hover:text-black font-medium">Accessories</a>
+        <a href="index.html#sale" class="main-nav-link text-rose-700 hover:text-rose-950 font-semibold">Sale</a>
+      </nav>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <!-- Client Indicator -->
+        <div class="hidden sm:flex items-center space-x-2 pl-2">
+          <div class="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center text-[11px] font-bold tracking-tight" id="headerAvatarInitials">
+            VS
+          </div>
+          <span class="text-xs uppercase tracking-luxury font-bold text-black" id="headerClientName">Victoria</span>
+        </div>
+
+        <!-- Wishlist -->
+        <button onclick="switchTab('wishlist')" class="p-2 text-neutral-700 hover:text-black transition relative" title="Saved Wishlist">
+          <i data-lucide="heart" class="w-5 h-5"></i>
+          <span id="navWishlistBadge" class="absolute top-1 right-1 w-4 h-4 bg-black text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <!-- Shopping Bag -->
+        <button onclick="toggleCartDrawer(true)" class="p-2 text-neutral-700 hover:text-black transition relative" title="Shopping Bag">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="navCartBadge" class="absolute top-1 right-1 w-4 h-4 bg-black text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <!-- Exit / Logout -->
+        <button onclick="logoutUser()" class="text-xs uppercase tracking-tightLuxury font-semibold text-neutral-500 hover:text-black border-l border-neutral-200 pl-3 transition flex items-center space-x-1" title="Sign Out">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+          <span class="hidden md:inline">Sign Out</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= CLIENT PROFILE BANNER ================= -->
+  <section class="bg-black text-white border-b border-neutral-800">
+    <div class="max-w-[1760px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        
+        <!-- Client Identity & Tier -->
+        <div class="flex items-start sm:items-center space-x-4 sm:space-x-6">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-neutral-900 border border-neutral-700 flex items-center justify-center text-xl sm:text-2xl font-serif font-bold text-amber-300 flex-shrink-0 shadow-inner" id="bannerAvatar">
+            VS
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="px-2.5 py-0.5 bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] font-bold uppercase tracking-luxury flex items-center space-x-1" id="clientTierBadge">
+                <i data-lucide="crown" class="w-3 h-3"></i>
+                <span id="clientTierText">Private Client Couture VIP</span>
+              </span>
+              <span class="text-[11px] text-neutral-400 tracking-tightLuxury uppercase" id="clientMemberSince">
+                Member Since 2024
+              </span>
+            </div>
+            <h1 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-white" id="clientDisplayName">
+              Victoria Sterling
+            </h1>
+            <p class="text-xs text-neutral-400 mt-1 flex items-center space-x-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-neutral-500"></i>
+              <span id="clientEmailText">vip@stackly.com</span>
+              <span class="text-neutral-600">•</span>
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-neutral-500"></i>
+              <span id="clientPhoneText">+1 (555) 234-5678</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Tier Status & Credits Summary -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 bg-neutral-900/90 border border-neutral-800 p-4 sm:p-5 lg:min-w-[480px]">
+          <div>
+            <div class="text-[10px] uppercase tracking-luxury text-neutral-400">Available Credit</div>
+            <div class="font-serif text-lg sm:text-2xl font-bold text-amber-300 mt-0.5" id="creditValueDisplay">$485.00</div>
+            <div class="text-[10px] text-neutral-400" id="pointsDisplay">4,850 VIP Points</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-luxury text-neutral-400">Active Shipments</div>
+            <div class="font-serif text-lg sm:text-2xl font-bold text-white mt-0.5" id="activeShipmentsDisplay">1 In Transit</div>
+            <div class="text-[10px] text-emerald-400 font-medium">Tomorrow Delivery</div>
+          </div>
+          <div class="col-span-2 sm:col-span-1 border-t sm:border-t-0 sm:border-l border-neutral-800 pt-3 sm:pt-0 sm:pl-4 flex flex-col justify-center">
+            <button onclick="openConciergeModal()" class="w-full py-2 bg-white text-black hover:bg-neutral-200 text-[10px] font-bold uppercase tracking-luxury transition text-center">
+              Stylist Concierge
+            </button>
+            <a href="index.html" class="block text-[10px] text-center text-neutral-400 hover:text-white mt-2 uppercase tracking-tightLuxury transition">
+              Explore Salon &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TABBED NAVIGATION BAR ================= -->
+  <div class="bg-white border-b border-neutral-200 sticky top-[57px] z-30 shadow-sm">
+    <div class="max-w-[1760px] mx-auto px-4 sm:px-8">
+      <div class="flex items-center space-x-2 sm:space-x-8 overflow-x-auto no-scrollbar py-1">
+        <button onclick="switchTab('overview')" id="tabBtn-overview" class="tab-button py-3.5 border-b-2 border-black text-black font-bold text-xs uppercase tracking-luxury whitespace-nowrap transition">
+          Overview
+        </button>
+        <button onclick="switchTab('orders')" id="tabBtn-orders" class="tab-button py-3.5 border-b-2 border-transparent text-neutral-500 hover:text-black font-semibold text-xs uppercase tracking-luxury whitespace-nowrap transition">
+          Orders & Tracking (<span id="tabOrderCount">2</span>)
+        </button>
+        <button onclick="switchTab('wishlist')" id="tabBtn-wishlist" class="tab-button py-3.5 border-b-2 border-transparent text-neutral-500 hover:text-black font-semibold text-xs uppercase tracking-luxury whitespace-nowrap transition">
+          Curated Wishlist (<span id="tabWishlistCount">0</span>)
+        </button>
+        <button onclick="switchTab('addresses')" id="tabBtn-addresses" class="tab-button py-3.5 border-b-2 border-transparent text-neutral-500 hover:text-black font-semibold text-xs uppercase tracking-luxury whitespace-nowrap transition">
+          Shipping & Billing
+        </button>
+        <button onclick="switchTab('stylist')" id="tabBtn-stylist" class="tab-button py-3.5 border-b-2 border-transparent text-neutral-500 hover:text-black font-semibold text-xs uppercase tracking-luxury whitespace-nowrap transition">
+          Stylist & Preferences
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN TAB CONTENT PANELS ================= -->
+  <main class="flex-1 max-w-[1760px] w-full mx-auto px-4 sm:px-8 py-8">
+
+    <!-- ------------------------------------------------------------- -->
+    <!-- TAB 1: OVERVIEW -->
+    <!-- ------------------------------------------------------------- -->
+    <div id="tabPanel-overview" class="space-y-8">
+      
+      <!-- Live In-Transit Shipment Card -->
+      <div class="bg-white border border-neutral-200 shadow-sm p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-neutral-100 gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-[11px] font-bold uppercase tracking-luxury text-emerald-600">Active Delivery In Progress</span>
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+              Order #STK-92841 &bull; Saint Laurent Runway Tuxedo
+            </h3>
+            <p class="text-xs text-neutral-500 mt-0.5">
+              Dispatched via Express Courier &bull; Tracking: <span class="font-mono font-medium text-black">1Z9999999999999999</span>
+            </p>
+          </div>
+          <div class="text-left sm:text-right">
+            <span class="text-[10px] uppercase tracking-luxury text-neutral-400">Estimated Arrival</span>
+            <div class="text-sm font-bold text-black uppercase tracking-tight">Tomorrow by 10:30 AM</div>
+            <button onclick="switchTab('orders')" class="text-[11px] uppercase tracking-luxury font-bold text-neutral-800 underline mt-1">
+              View Tracking Details &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- 5-Step Luxury Tracking Stepper -->
+        <div class="py-8">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 relative">
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-tight text-black">Order Verified</div>
+                <div class="text-[10px] text-neutral-400">Oct 8, 2026 &bull; 09:15 AM</div>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                <i data-lucide="package-check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-tight text-black">Paris Atelier Dispatched</div>
+                <div class="text-[10px] text-neutral-400">Oct 9, 2026 &bull; 02:40 PM</div>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 rounded-full bg-amber-400 text-black flex items-center justify-center flex-shrink-0 text-xs font-bold ring-4 ring-amber-100">
+                <i data-lucide="truck" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-tight text-black">In Express Transit</div>
+                <div class="text-[10px] text-emerald-600 font-semibold">JFK Air Cargo Hub &bull; On Schedule</div>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3 opacity-40">
+              <div class="w-8 h-8 rounded-full bg-neutral-200 text-neutral-500 flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                <i data-lucide="home" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-tight text-neutral-600">White-Glove Delivery</div>
+                <div class="text-[10px] text-neutral-400">Signature Required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item Snapshot -->
+        <div class="bg-neutral-50 p-4 border border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center space-x-4">
+            <img src="images/clothing_101_a.webp" alt="Saint Laurent" class="w-14 h-18 object-cover border border-neutral-200 bg-white" />
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-luxury text-neutral-500">SAINT LAURENT</span>
+              <h4 class="text-xs font-semibold text-black uppercase">Le Smoking Tuxedo Blazer</h4>
+              <p class="text-[11px] text-neutral-400">Size: FR 36 (US 4) &bull; Noir Deep Wool</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="font-bold text-sm text-black">$3,690.00</div>
+            <span class="text-[10px] uppercase tracking-luxury text-emerald-600 font-semibold">Complimentary VIP Courier</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white border border-neutral-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between text-neutral-400 mb-2">
+            <span class="text-[10px] uppercase tracking-luxury font-bold text-black">VIP Rewards Tier</span>
+            <i data-lucide="crown" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <div class="font-serif text-2xl font-bold text-black uppercase">Couture Elite</div>
+          <p class="text-xs text-neutral-500 mt-1">
+            4,850 points accumulated. Only 150 points away from next $100 luxury voucher.
+          </p>
+          <div class="w-full bg-neutral-100 h-1.5 mt-4 rounded-full overflow-hidden">
+            <div class="bg-black h-full w-[88%]"></div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white border border-neutral-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between text-neutral-400 mb-2">
+            <span class="text-[10px] uppercase tracking-luxury font-bold text-black">Private Stylist</span>
+            <i data-lucide="sparkles" class="w-4 h-4 text-neutral-400"></i>
+          </div>
+          <div class="font-serif text-2xl font-bold text-black">Elena Vance</div>
+          <p class="text-xs text-neutral-500 mt-1">
+            Assigned Senior Runway Stylist. Available for lookbook curation & fittings.
+          </p>
+          <button onclick="openConciergeModal()" class="mt-4 text-[11px] uppercase tracking-luxury font-bold text-black underline">
+            Request Private Consultation &rarr;
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white border border-neutral-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between text-neutral-400 mb-2">
+            <span class="text-[10px] uppercase tracking-luxury font-bold text-black">Default Destination</span>
+            <i data-lucide="map-pin" class="w-4 h-4 text-neutral-400"></i>
+          </div>
+          <div class="font-serif text-lg font-bold text-black" id="overviewAddressCity">New York, NY</div>
+          <p class="text-xs text-neutral-500 mt-1" id="overviewAddressFull">
+            740 Park Avenue, Apt 14B, New York, NY 10021
+          </p>
+          <button onclick="switchTab('addresses')" class="mt-4 text-[11px] uppercase tracking-luxury font-bold text-black underline">
+            Manage Destinations &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- Private Client Exclusive Trunk Shows -->
+      <div class="bg-black text-white p-8 relative overflow-hidden">
+        <div class="max-w-2xl relative z-10">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-amber-300 font-bold">PRIVATE INVITATION ONLY</span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-tight mt-1">
+            Autumn / Winter Haute Couture Trunk Show
+          </h3>
+          <p class="text-xs text-neutral-300 mt-2 leading-relaxed">
+            As a Couture VIP Client, you have priority access to reserve pieces from next season's Paris & Milan collections before global launch. All pre-orders include customized bespoke tailoring.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a href="clothing.html" class="px-6 py-3 bg-white text-black text-xs uppercase tracking-luxury font-bold hover:bg-neutral-200 transition">
+              Preview Collection
+            </a>
+            <button onclick="openConciergeModal()" class="px-6 py-3 border border-neutral-600 hover:border-white text-white text-xs uppercase tracking-luxury font-bold transition">
+              Speak With Concierge
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ------------------------------------------------------------- -->
+    <!-- TAB 2: ORDERS & TRACKING -->
+    <!-- ------------------------------------------------------------- -->
+    <div id="tabPanel-orders" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-200 pb-4 gap-2">
+        <div>
+          <h2 class="font-serif text-2xl font-bold uppercase tracking-tight text-black">Order History & Tracking</h2>
+          <p class="text-xs text-neutral-500">Track shipments in real-time, view digital receipts, and manage returns.</p>
+        </div>
+        <div class="text-xs text-neutral-500">
+          Total Orders Placed: <strong class="text-black" id="totalOrdersPlaced">2</strong>
+        </div>
+      </div>
+
+      <!-- Orders Container populated via JavaScript -->
+      <div id="ordersListContainer" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------------- -->
+    <!-- TAB 3: CURATED WISHLIST -->
+    <!-- ------------------------------------------------------------- -->
+    <div id="tabPanel-wishlist" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-200 pb-4 gap-2">
+        <div>
+          <h2 class="font-serif text-2xl font-bold uppercase tracking-tight text-black">Curated Runway Wishlist</h2>
+          <p class="text-xs text-neutral-500">Pieces you have saved from the runway collection. Move directly to your bag when ready.</p>
+        </div>
+        <div class="flex items-center space-x-3">
+          <a href="clothing.html" class="px-4 py-2 bg-black text-white text-xs uppercase tracking-luxury font-bold hover:bg-neutral-800 transition">
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+
+      <!-- Wishlist Grid -->
+      <div id="dashboardWishlistGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Populated via JavaScript -->
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------------- -->
+    <!-- TAB 4: SHIPPING & BILLING ADDRESSES -->
+    <!-- ------------------------------------------------------------- -->
+    <div id="tabPanel-addresses" class="hidden space-y-8">
+      <div>
+        <h2 class="font-serif text-2xl font-bold uppercase tracking-tight text-black">Shipping & Payment Methods</h2>
+        <p class="text-xs text-neutral-500">Manage your private residences, delivery preferences, and payment cards on file.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Primary Shipping Destination Card -->
+        <div class="bg-white border border-neutral-200 p-6 sm:p-8 shadow-sm">
+          <div class="flex justify-between items-start mb-4 pb-4 border-b border-neutral-100">
+            <div>
+              <span class="px-2 py-0.5 bg-black text-white text-[9px] font-bold uppercase tracking-luxury">Primary Destination</span>
+              <h3 class="font-serif text-lg font-bold uppercase tracking-tight text-black mt-2">Residential Delivery Address</h3>
+            </div>
+            <button onclick="openEditAddressModal()" class="text-xs uppercase tracking-luxury font-bold text-black underline hover:opacity-70 transition">
+              Edit Address
+            </button>
+          </div>
+
+          <div class="space-y-1 text-xs text-neutral-600" id="addressCardContent">
+            <p class="font-bold text-black text-sm" id="addrRecipientName">Victoria Sterling</p>
+            <p id="addrLine1">740 Park Avenue, Apt 14B</p>
+            <p id="addrCityStateZip">New York, NY 10021</p>
+            <p id="addrCountry">United States</p>
+            <p class="pt-2 text-neutral-500" id="addrPhone">Phone: +1 (555) 234-5678</p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+            <span class="flex items-center space-x-1.5 text-emerald-600 font-semibold">
+              <i data-lucide="shield-check" class="w-4 h-4"></i>
+              <span>Signature Required Delivery Confirmed</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Saved Payment Methods Card -->
+        <div class="bg-white border border-neutral-200 p-6 sm:p-8 shadow-sm">
+          <div class="flex justify-between items-start mb-4 pb-4 border-b border-neutral-100">
+            <div>
+              <span class="px-2 py-0.5 bg-amber-400 text-black text-[9px] font-bold uppercase tracking-luxury">Private Banking</span>
+              <h3 class="font-serif text-lg font-bold uppercase tracking-tight text-black mt-2">Payment Methods On File</h3>
+            </div>
+            <button onclick="showToast('Payment method update form dispatched securely')" class="text-xs uppercase tracking-luxury font-bold text-black underline hover:opacity-70 transition">
+              Add New Card
+            </button>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Card 1 -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-7 bg-black text-white flex items-center justify-center font-mono font-bold text-[10px] tracking-widest">
+                  AMEX
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-black uppercase">American Express Centurion Platinum</div>
+                  <div class="text-[11px] text-neutral-500">Ending in &bull;&bull;&bull;&bull; 4092 &bull; Exp 08/29</div>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-bold text-black bg-neutral-200 px-2 py-0.5">Default</span>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-7 bg-neutral-800 text-white flex items-center justify-center font-mono font-bold text-[10px] tracking-widest">
+                  APPLE
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-black uppercase">Apple Pay Express</div>
+                  <div class="text-[11px] text-neutral-500">Linked to biometric authorization</div>
+                </div>
+              </div>
+              <span class="text-[10px] text-neutral-400 uppercase font-semibold">Active</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400 flex items-center space-x-2">
+            <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+            <span>Encrypted with 256-bit client tokenization. Raw card numbers are never stored.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------------- -->
+    <!-- TAB 5: STYLIST & PREFERENCES -->
+    <!-- ------------------------------------------------------------- -->
+    <div id="tabPanel-stylist" class="hidden space-y-8">
+      <div>
+        <h2 class="font-serif text-2xl font-bold uppercase tracking-tight text-black">Stylist Concierge & Sizing Profile</h2>
+        <p class="text-xs text-neutral-500">Tailored preferences used by our luxury stylists to prepare private wardrobe selections.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Stylist Card -->
+        <div class="bg-white border border-neutral-200 p-6 sm:p-8 shadow-sm">
+          <div class="text-center pb-6 border-b border-neutral-100">
+            <div class="w-20 h-20 rounded-full bg-neutral-900 mx-auto mb-3 flex items-center justify-center text-amber-300 font-serif font-bold text-xl border-2 border-amber-300/40">
+              EV
+            </div>
+            <h3 class="font-serif text-lg font-bold text-black uppercase">Elena Vance</h3>
+            <p class="text-[10px] uppercase tracking-luxury text-neutral-400 mt-0.5">Senior Runway Stylist &bull; Paris Salon</p>
+            <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+              "I specialize in tailoring runway looks for international galas, business summits, and weekend retreats."
+            </p>
+          </div>
+
+          <div class="py-4 space-y-2 text-xs">
+            <div class="flex justify-between text-neutral-500">
+              <span>Direct Phone:</span>
+              <strong class="text-black">+1 (888) 555-7825 ext 14</strong>
+            </div>
+            <div class="flex justify-between text-neutral-500">
+              <span>Stylist Email:</span>
+              <strong class="text-black font-mono">elena.v@stackly.com</strong>
+            </div>
+          </div>
+
+          <button onclick="openConciergeModal()" class="w-full py-3 bg-black text-white text-xs font-bold uppercase tracking-luxury hover:bg-neutral-800 transition mt-2">
+            Message Elena Directly
+          </button>
+        </div>
+
+        <!-- Sizing & Designer Preferences -->
+        <div class="lg:col-span-2 bg-white border border-neutral-200 p-6 sm:p-8 shadow-sm space-y-6">
+          <div>
+            <h3 class="font-serif text-lg font-bold uppercase tracking-tight text-black mb-1">Your Sizing Matrix</h3>
+            <p class="text-xs text-neutral-500 mb-4">Ensures pieces added to your cart are automatically pre-selected in your preferred size.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div class="p-3 border border-neutral-200 bg-neutral-50 text-center">
+                <span class="text-[10px] uppercase tracking-luxury text-neutral-400">Blazers & Outerwear</span>
+                <div class="font-bold text-black text-sm mt-1">FR 36 (US 4)</div>
+              </div>
+              <div class="p-3 border border-neutral-200 bg-neutral-50 text-center">
+                <span class="text-[10px] uppercase tracking-luxury text-neutral-400">Evening Dresses</span>
+                <div class="font-bold text-black text-sm mt-1">IT 40 / US 4</div>
+              </div>
+              <div class="p-3 border border-neutral-200 bg-neutral-50 text-center">
+                <span class="text-[10px] uppercase tracking-luxury text-neutral-400">Shoes & Heels</span>
+                <div class="font-bold text-black text-sm mt-1">IT 38 (US 8)</div>
+              </div>
+              <div class="p-3 border border-neutral-200 bg-neutral-50 text-center">
+                <span class="text-[10px] uppercase tracking-luxury text-neutral-400">Denim & Trousers</span>
+                <div class="font-bold text-black text-sm mt-1">Size 26 Waist</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-neutral-100">
+            <h3 class="font-serif text-lg font-bold uppercase tracking-tight text-black mb-1">Preferred Fashion Houses</h3>
+            <p class="text-xs text-neutral-500 mb-4">We notify you the moment fresh runway drops arrive from these maisons.</p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 bg-black text-white text-[11px] font-semibold uppercase tracking-luxury">SAINT LAURENT</span>
+              <span class="px-3 py-1.5 bg-black text-white text-[11px] font-semibold uppercase tracking-luxury">AMINA MUADDI</span>
+              <span class="px-3 py-1.5 bg-black text-white text-[11px] font-semibold uppercase tracking-luxury">BOTTEGA VENETA</span>
+              <span class="px-3 py-1.5 bg-black text-white text-[11px] font-semibold uppercase tracking-luxury">KHAITE</span>
+              <span class="px-3 py-1.5 bg-black text-white text-[11px] font-semibold uppercase tracking-luxury">JACQUEMUS</span>
+              <span class="px-3 py-1.5 bg-black text-white text-[11px] font-semibold uppercase tracking-luxury">BALENCIAGA</span>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-neutral-100">
+            <button onclick="openEditProfileModal()" class="px-6 py-2.5 border border-black hover:bg-black hover:text-white text-xs uppercase tracking-luxury font-bold transition">
+              Edit Client Profile & Sizing &rarr;
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= EDIT PROFILE & ADDRESS MODAL ================= -->
+  <div id="editModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full border border-neutral-300 shadow-2xl p-6 sm:p-8 relative">
+      <button onclick="closeEditModal()" class="absolute top-5 right-5 text-neutral-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <span class="text-[10px] uppercase tracking-luxury text-neutral-400 font-bold">CLIENT PREFERENCES</span>
+      <h3 class="font-serif text-xl font-bold uppercase tracking-tight text-black mt-1">Update Destination & Details</h3>
+
+      <form id="editProfileForm" onsubmit="handleSaveProfile(event)" class="space-y-4 mt-6">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">Full Name</label>
+          <input type="text" id="modalInputName" required class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">Phone Number</label>
+          <input type="tel" id="modalInputPhone" class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">Street Address</label>
+          <input type="text" id="modalInputAddress" required class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200" />
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">City</label>
+            <input type="text" id="modalInputCity" required class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">State</label>
+            <input type="text" id="modalInputState" required class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">ZIP / Postal</label>
+            <input type="text" id="modalInputZip" required class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200" />
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-end space-x-3">
+          <button type="button" onclick="closeEditModal()" class="px-5 py-2.5 text-xs uppercase tracking-luxury font-semibold text-neutral-500 hover:text-black">
+            Cancel
+          </button>
+          <button type="submit" class="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-bold hover:bg-neutral-800 transition">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CONCIERGE STYLIST MODAL ================= -->
+  <div id="conciergeModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full border border-neutral-300 shadow-2xl p-6 sm:p-8 relative">
+      <button onclick="closeConciergeModal()" class="absolute top-5 right-5 text-neutral-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center space-x-3 mb-2">
+        <div class="w-10 h-10 rounded-full bg-black text-amber-300 font-serif font-bold flex items-center justify-center text-sm">
+          EV
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-bold uppercase tracking-tight text-black">Private Stylist Concierge</h3>
+          <p class="text-[10px] text-neutral-500 uppercase tracking-luxury">Elena Vance &bull; Senior Runway Stylist</p>
+        </div>
+      </div>
+
+      <form id="conciergeForm" onsubmit="handleSendConcierge(event)" class="space-y-4 mt-5">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">Styling Request Subject</label>
+          <select id="conciergeSubject" class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200 text-neutral-700">
+            <option value="gala">Evening Gala / Red Carpet Look Curation</option>
+            <option value="trunk">Paris Trunk Show Pre-Order Allocation</option>
+            <option value="sizing">Bespoke Sizing & Tailoring Consultation</option>
+            <option value="gift">Private VIP Gifting Concierge</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-luxury text-black mb-1">Your Personal Note</label>
+          <textarea id="conciergeNote" rows="4" required placeholder="Tell Elena your upcoming event, color palette preferences, or specific pieces you would like reserved..." class="w-full px-3 py-2 text-xs bg-neutral-50 border border-neutral-200"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end space-x-3">
+          <button type="button" onclick="closeConciergeModal()" class="px-5 py-2.5 text-xs uppercase tracking-luxury font-semibold text-neutral-500 hover:text-black">
+            Close
+          </button>
+          <button type="submit" class="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-bold hover:bg-neutral-800 transition flex items-center space-x-2">
+            <span>Send Direct Message</span>
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= INVOICE RECEIPT MODAL ================= -->
+  <div id="invoiceModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-xl w-full border border-neutral-300 shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeInvoiceModal()" class="absolute top-5 right-5 text-neutral-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="border-b border-neutral-200 pb-5">
+        <div class="flex justify-between items-center">
+          <img src="images/logo-transparent.png" alt="Stackly" class="h-6 w-auto" />
+          <span class="text-[10px] uppercase font-bold tracking-luxury text-neutral-400">OFFICIAL RECEIPT</span>
+        </div>
+        <div class="mt-4 flex justify-between text-xs text-neutral-600">
+          <div>
+            <p>Order ID: <strong class="text-black font-mono" id="invoiceOrderId">#STK-92841</strong></p>
+            <p>Issued To: <strong class="text-black" id="invoiceClientName">Victoria Sterling</strong></p>
+          </div>
+          <div class="text-right">
+            <p>Date: <span id="invoiceDate">October 8, 2026</span></p>
+            <p>Payment: <span class="font-medium text-black">AMEX Platinum &bull;&bull;&bull;&bull; 4092</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-5" id="invoiceItemsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="border-t border-neutral-200 pt-4 space-y-2 text-xs">
+        <div class="flex justify-between text-neutral-600">
+          <span>Subtotal</span>
+          <span id="invoiceSubtotal">$3,690.00</span>
+        </div>
+        <div class="flex justify-between text-neutral-600">
+          <span>Complimentary VIP Express Courier</span>
+          <span class="text-emerald-600 font-semibold">$0.00</span>
+        </div>
+        <div class="flex justify-between text-neutral-600">
+          <span>Estimated Sales Tax</span>
+          <span>$0.00 (Exempt)</span>
+        </div>
+        <div class="flex justify-between text-sm font-bold text-black pt-2 border-t border-neutral-100">
+          <span>Total Paid</span>
+          <span id="invoiceTotalPaid">$3,690.00</span>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end space-x-3">
+        <button onclick="window.print()" class="px-5 py-2.5 border border-black text-black hover:bg-neutral-100 text-xs uppercase tracking-luxury font-bold transition flex items-center space-x-2">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span>Print Receipt</span>
+        </button>
+        <button onclick="closeInvoiceModal()" class="px-5 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-bold transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SHOPPING BAG DRAWER ================= -->
+  <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full sm:w-[440px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-6 border-b border-fwrd-border flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        <h3 class="text-sm font-bold uppercase tracking-luxury">Shopping Bag (<span id="cartCountTitle">0</span>)</h3>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="p-1 hover:opacity-60 transition" aria-label="Close Bag">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-6 space-y-6">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <div class="p-6 border-t border-fwrd-border bg-fwrd-lightGray space-y-3 text-xs">
+      <div class="flex justify-between text-neutral-600">
+        <span>Subtotal</span>
+        <span class="font-semibold text-black" id="cartSubtotalDisplay">$0.00</span>
+      </div>
+      <div class="flex justify-between text-neutral-600">
+        <span>Shipping (VIP Express)</span>
+        <span class="font-semibold text-emerald-600">FREE</span>
+      </div>
+      <div class="flex justify-between text-sm font-bold text-black pt-2 border-t border-neutral-300">
+        <span>Total</span>
+        <span id="cartTotalDisplay">$0.00</span>
+      </div>
+
+      <button onclick="handleCheckoutModal()" class="w-full py-4 bg-black text-white text-xs font-bold uppercase tracking-luxury hover:bg-neutral-800 transition shadow-lg mt-2 flex items-center justify-center space-x-2">
+        <span>Proceed To Private Checkout</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Drawer Backdrop Overlay -->
+  <div id="drawerOverlay" onclick="closeAllDrawers()" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-black text-white text-xs uppercase tracking-luxury px-6 py-3.5 shadow-2xl flex items-center space-x-3 transform translate-y-24 transition-transform duration-300">
+    <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">Action completed successfully</span>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-black text-white pt-16 pb-12 border-t border-neutral-800 text-xs">
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-neutral-800">
+      
+      <!-- Brand & VIP Concierge -->
+      <div class="lg:col-span-2 pr-4">
+        <a href="index.html" class="inline-block mb-4" aria-label="Stackly Home">
+          <img src="images/logo-white.png" alt="Stackly" class="h-8 sm:h-9 w-auto object-contain" />
+        </a>
+        <p class="text-neutral-400 leading-relaxed text-xs max-w-md mb-6">
+          Stackly is the premier global editorial destination for luxury designer fashion, offering an impeccably curated roster of world-renowned designers and emerging innovators across Clothing, Shoes, Bags, Accessories, and Dresses.
+        </p>
+        <div class="space-y-2 text-neutral-300 text-[11px] uppercase tracking-luxury">
+          <p>VIP CLIENT SERVICES: <strong class="text-white">1-888-555-STACKLY</strong></p>
+          <p>PERSONAL STYLING: <strong class="text-white">STYLING@STACKLY.COM</strong></p>
+        </div>
+      </div>
+
+      <!-- Column: Customer Service -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Client Care</h4>
+        <ul class="space-y-2.5 text-neutral-400">
+          <li><a href="#" class="hover:text-white transition">Complimentary Shipping</a></li>
+          <li><a href="#" class="hover:text-white transition">Easy Returns & Exchanges</a></li>
+          <li><a href="#" class="hover:text-white transition">Order Status & Tracking</a></li>
+          <li><a href="#" class="hover:text-white transition">Authenticity Guarantee</a></li>
+          <li><a href="#" class="hover:text-white transition">Size & Fit Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Departments -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Departments</h4>
+        <ul class="space-y-2.5 text-neutral-400">
+          <li><a href="clothing.html" class="hover:text-white transition">Designer Clothing</a></li>
+          <li><a href="shoes.html" class="hover:text-white transition">Designer Shoes</a></li>
+          <li><a href="bags.html" class="hover:text-white transition">Designer Bags</a></li>
+          <li><a href="accessories.html" class="hover:text-white transition">Designer Accessories</a></li>
+          <li><a href="dresses.html" class="hover:text-white transition">Designer Dresses</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Newsletter VIP Signup -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Private Client VIP</h4>
+        <p class="text-neutral-400 text-xs mb-4">Subscribe to receive 10% off your first purchase and private sale invitations.</p>
+        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+          <input 
+            type="email" 
+            placeholder="Enter your email address" 
+            required
+            class="w-full bg-neutral-900 border border-neutral-700 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white transition"
+          />
+          <button type="submit" class="w-full bg-white text-black py-2 text-xs uppercase tracking-luxury font-bold hover:bg-neutral-200 transition">
+            Join VIP Client
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Social Media Icons Row (All Linking to 404 Page) -->
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-8 pb-6 border-b border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="text-[10.5px] uppercase tracking-[0.22em] text-neutral-400 font-medium">Follow The Runway:</span>
+        <span class="text-xs font-serif italic text-neutral-300">@StacklyOfficial</span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <!-- Instagram -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Instagram" title="Instagram">
+          <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="TikTok" title="TikTok">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.28 8.28 0 0 0 4.85 1.54V6.84a4.83 4.83 0 0 1-1.08-.15z"/>
+          </svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Pinterest" title="Pinterest">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.546.535 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="X (Twitter)" title="X">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="YouTube" title="YouTube">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Facebook" title="Facebook">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-neutral-500 text-[11px] tracking-tightLuxury uppercase gap-4">
+      <div>&copy; 2026 STACKLY. ALL RIGHTS RESERVED. FORWARD BY ELYSE WALKER.</div>
+      <div class="flex space-x-6">
+        <a href="404.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="404.html" class="hover:text-white transition">Terms of Service</a>
+        <a href="404.html" class="hover:text-white transition">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    let activeClient = null;
+
+    // Load active client data or redirect
+    function initDashboard() {
+      initAuthSeed();
+      activeClient = getLoggedInUser();
+
+      // If no client is logged in, default to Victoria Sterling demo VIP
+      if (!activeClient) {
+        const users = getStoredUsers();
+        activeClient = users[0] || null;
+        if (activeClient) {
+          localStorage.setItem('fwrd_current_user', JSON.stringify(activeClient));
+        } else {
+          window.location.href = 'login.html';
+          return;
+        }
+      }
+
+      renderClientProfile();
+      renderOrders();
+      renderWishlist();
+      updateCartDisplay();
+      lucide.createIcons();
+    }
+
+    // Render Client Profile Header & Values
+    function renderClientProfile() {
+      if (!activeClient) return;
+
+      const initials = activeClient.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      
+      document.getElementById('headerAvatarInitials').textContent = initials;
+      document.getElementById('headerClientName').textContent = activeClient.name.split(' ')[0];
+      document.getElementById('bannerAvatar').textContent = initials;
+      document.getElementById('clientDisplayName').textContent = activeClient.name;
+      document.getElementById('clientEmailText').textContent = activeClient.email;
+      document.getElementById('clientPhoneText').textContent = activeClient.phone || '+1 (555) 234-5678';
+      document.getElementById('clientTierText').textContent = activeClient.tier || 'Private Client Couture VIP';
+      document.getElementById('topBarTier').textContent = (activeClient.tier || 'Private Client Couture VIP').toUpperCase();
+      document.getElementById('clientMemberSince').textContent = `Member Since ${activeClient.since || '2024'}`;
+
+      const pts = activeClient.rewardPoints || 4850;
+      document.getElementById('pointsDisplay').textContent = `${pts.toLocaleString()} VIP Points`;
+      document.getElementById('creditValueDisplay').textContent = `$${(pts / 10).toFixed(2)}`;
+
+      // Addresses
+      const addr = activeClient.address || {
+        line1: '740 Park Avenue, Apt 14B',
+        city: 'New York',
+        state: 'NY',
+        zip: '10021',
+        country: 'United States'
+      };
+
+      document.getElementById('overviewAddressCity').textContent = `${addr.city}, ${addr.state}`;
+      document.getElementById('overviewAddressFull').textContent = `${addr.line1}, ${addr.city}, ${addr.state} ${addr.zip}`;
+      document.getElementById('addrRecipientName').textContent = activeClient.name;
+      document.getElementById('addrLine1').textContent = addr.line1;
+      document.getElementById('addrCityStateZip').textContent = `${addr.city}, ${addr.state} ${addr.zip}`;
+      document.getElementById('addrCountry').textContent = addr.country || 'United States';
+      document.getElementById('addrPhone').textContent = `Phone: ${activeClient.phone || '+1 (555) 234-5678'}`;
+    }
+
+    // Render Orders Tab
+    function renderOrders() {
+      const container = document.getElementById('ordersListContainer');
+      const orders = activeClient.orders || [];
+      document.getElementById('tabOrderCount').textContent = orders.length;
+      document.getElementById('totalOrdersPlaced').textContent = orders.length;
+
+      if (orders.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white p-12 border border-neutral-200 text-center">
+            <i data-lucide="package" class="w-10 h-10 text-neutral-300 mx-auto mb-3"></i>
+            <h4 class="font-serif text-lg uppercase">No Orders Yet</h4>
+            <p class="text-xs text-neutral-500 mt-1 mb-4">Discover this season's runway collection.</p>
+            <a href="clothing.html" class="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-bold inline-block">Explore Runway</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = orders.map(ord => `
+        <div class="bg-white border border-neutral-200 shadow-sm p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-neutral-100 gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="text-xs font-bold uppercase tracking-tight text-black">Order #${ord.id}</span>
+                <span class="text-neutral-300">&bull;</span>
+                <span class="text-xs text-neutral-500">${ord.date}</span>
+              </div>
+              <div class="flex items-center space-x-2 mt-1">
+                <span class="px-2 py-0.5 ${ord.status.includes('In Transit') ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'} text-[10px] font-bold uppercase tracking-luxury">
+                  ${ord.status}
+                </span>
+                <span class="text-[11px] text-neutral-400">Tracking: ${ord.trackingNumber}</span>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <button onclick="showInvoice('${ord.id}')" class="px-3.5 py-1.5 border border-neutral-300 hover:border-black text-[11px] font-bold uppercase tracking-tightLuxury transition flex items-center space-x-1.5">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                <span>Digital Receipt</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Items in order -->
+          <div class="divide-y divide-neutral-100 py-4">
+            ${ord.items.map(item => `
+              <div class="py-4 flex items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                  <img src="${item.image}" alt="${item.title}" class="w-16 h-20 object-cover border border-neutral-100 bg-neutral-50" />
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-luxury text-neutral-400">${item.designer}</span>
+                    <h4 class="text-xs font-semibold text-black uppercase mt-0.5">${item.title}</h4>
+                    <p class="text-[11px] text-neutral-500 mt-1">Size: <strong>${item.size}</strong></p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-bold text-black">$${item.price.toLocaleString()}</div>
+                  <button onclick="quickAddCartFromId(${item.id}, '${item.size}')" class="mt-2 text-[10px] uppercase tracking-luxury font-bold text-black underline hover:opacity-70">
+                    Order Again &rarr;
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="pt-4 border-t border-neutral-100 flex justify-between items-center text-xs">
+            <span class="text-neutral-500">Shipping: <strong>Express Courier (Complimentary)</strong></span>
+            <div class="text-right">
+              <span class="text-[10px] uppercase tracking-luxury text-neutral-400 block">Total Billed</span>
+              <span class="font-serif text-lg font-bold text-black">$${ord.total.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Curated Wishlist Tab
+    function renderWishlist() {
+      const rawWishlist = localStorage.getItem('fwrd_wishlist');
+      let wishlistIds = [];
+      try {
+        wishlistIds = rawWishlist ? JSON.parse(rawWishlist) : [];
+      } catch (e) {
+        wishlistIds = [];
+      }
+
+      // Default sample wishlist items if empty for premium demo feel
+      if (wishlistIds.length === 0) {
+        wishlistIds = [102, 202, 301];
+        localStorage.setItem('fwrd_wishlist', JSON.stringify(wishlistIds));
+      }
+
+      const grid = document.getElementById('dashboardWishlistGrid');
+      document.getElementById('tabWishlistCount').textContent = wishlistIds.length;
+      document.getElementById('navWishlistBadge').textContent = wishlistIds.length;
+
+      const matchingProducts = productsData.filter(p => wishlistIds.includes(p.id));
+
+      if (matchingProducts.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center bg-white border border-neutral-200">
+            <i data-lucide="heart" class="w-10 h-10 text-neutral-300 mx-auto mb-3"></i>
+            <h4 class="font-serif text-lg uppercase">Your Wishlist is Empty</h4>
+            <p class="text-xs text-neutral-500 mt-1 mb-6">Explore the runway and save pieces you adore.</p>
+            <a href="clothing.html" class="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-bold">Discover Arrivals</a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = matchingProducts.map(p => `
+        <div class="bg-white border border-neutral-200 group flex flex-col justify-between">
+          <div class="relative aspect-fashion overflow-hidden bg-neutral-100">
+            <img src="${p.image1}" alt="${p.title}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" />
+            <button onclick="removeFromWishlist(${p.id})" class="absolute top-3 right-3 p-2 bg-white/90 hover:bg-white text-black transition shadow" title="Remove from wishlist">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-luxury text-neutral-400">${p.designer}</span>
+              <h4 class="text-xs font-semibold text-black uppercase mt-1 line-clamp-1">${p.title}</h4>
+              <div class="text-xs font-bold text-black mt-1">$${p.price.toLocaleString()}</div>
+            </div>
+            <button onclick="quickMoveToBag(${p.id})" class="mt-4 w-full py-2.5 bg-black text-white text-[11px] font-bold uppercase tracking-luxury hover:bg-neutral-800 transition flex items-center justify-center space-x-1.5">
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              <span>Move To Bag</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Wishlist Actions
+    function removeFromWishlist(id) {
+      let raw = localStorage.getItem('fwrd_wishlist');
+      let arr = raw ? JSON.parse(raw) : [];
+      arr = arr.filter(itemId => itemId !== id);
+      localStorage.setItem('fwrd_wishlist', JSON.stringify(arr));
+      renderWishlist();
+      lucide.createIcons();
+      showToast('Item removed from wishlist');
+    }
+
+    function quickMoveToBag(id) {
+      const product = productsData.find(p => p.id === id);
+      if (!product) return;
+      const size = product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Standard';
+      
+      let cart = getStoredCart();
+      const existing = cart.find(i => i.product.id === id && i.size === size);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ product, size, quantity: 1 });
+      }
+      localStorage.setItem('fwrd_cart', JSON.stringify(cart));
+      updateCartDisplay();
+      toggleCartDrawer(true);
+      showToast(`Added ${product.designer} to your bag`);
+    }
+
+    function quickAddCartFromId(id, size) {
+      const product = productsData.find(p => p.id === id);
+      if (!product) return;
+      let cart = getStoredCart();
+      const existing = cart.find(i => i.product.id === id && i.size === size);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ product, size, quantity: 1 });
+      }
+      localStorage.setItem('fwrd_cart', JSON.stringify(cart));
+      updateCartDisplay();
+      toggleCartDrawer(true);
+      showToast(`Re-ordered ${product.designer}`);
+    }
+
+    // Cart Handlers
+    function getStoredCart() {
+      try {
+        const raw = localStorage.getItem('fwrd_cart');
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function updateCartDisplay() {
+      const cart = getStoredCart();
+      const count = cart.reduce((s, i) => s + i.quantity, 0);
+      document.getElementById('navCartBadge').textContent = count;
+      document.getElementById('cartCountTitle').textContent = count;
+
+      const cartList = document.getElementById('cartItemsList');
+      if (!cartList) return;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = `
+          <div class="text-center py-16">
+            <i data-lucide="shopping-bag" class="w-10 h-10 text-neutral-300 mx-auto mb-3"></i>
+            <h4 class="font-serif text-lg uppercase">Your Bag is Empty</h4>
+            <p class="text-xs text-neutral-400 mb-6">Explore our curated luxury arrivals.</p>
+            <button onclick="toggleCartDrawer(false)" class="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-semibold">
+              Continue Shopping
+            </button>
+          </div>
+        `;
+        document.getElementById('cartSubtotalDisplay').textContent = '$0.00';
+        document.getElementById('cartTotalDisplay').textContent = '$0.00';
+        lucide.createIcons();
+        return;
+      }
+
+      cartList.innerHTML = cart.map(item => `
+        <div class="flex space-x-4 border-b border-neutral-100 pb-4">
+          <img src="${item.product.image1}" alt="${item.product.title}" class="w-16 h-20 object-cover bg-neutral-100 flex-shrink-0" />
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-xs uppercase tracking-luxury text-black">${item.product.designer}</h4>
+                <button onclick="removeCartItem(${item.product.id}, '${item.size}')" class="text-neutral-400 hover:text-black">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <p class="text-xs text-neutral-500 line-clamp-1">${item.product.title}</p>
+              <p class="text-[10px] text-neutral-400 mt-0.5">Size: ${item.size}</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-neutral-500">Qty: ${item.quantity}</span>
+              <span class="text-xs font-bold text-black">$${(item.product.price * item.quantity).toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((s, i) => s + (i.product.price * i.quantity), 0);
+      document.getElementById('cartSubtotalDisplay').textContent = `$${subtotal.toLocaleString()}`;
+      document.getElementById('cartTotalDisplay').textContent = `$${subtotal.toLocaleString()}`;
+      lucide.createIcons();
+    }
+
+    function removeCartItem(id, size) {
+      let cart = getStoredCart();
+      cart = cart.filter(i => !(i.product.id === id && i.size === size));
+      localStorage.setItem('fwrd_cart', JSON.stringify(cart));
+      updateCartDisplay();
+      showToast('Item removed from shopping bag');
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+      if (open) {
+        updateCartDisplay();
+        drawer.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+      } else {
+        drawer.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    function closeAllDrawers() {
+      document.getElementById('cartDrawer').classList.add('translate-x-full');
+      document.getElementById('drawerOverlay').classList.add('hidden');
+    }
+
+    function handleCheckoutModal() {
+      toggleCartDrawer(false);
+      showToast('Redirecting to Private Client Express Checkout...');
+      setTimeout(() => {
+        showToast('Order confirmed! Tracking initiated.');
+      }, 1500);
+    }
+
+    // Tab Switching
+    function switchTab(tabId) {
+      const tabs = ['overview', 'orders', 'wishlist', 'addresses', 'stylist'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn-${t}`);
+        const panel = document.getElementById(`tabPanel-${t}`);
+        if (t === tabId) {
+          btn.classList.add('border-black', 'text-black', 'font-bold');
+          btn.classList.remove('border-transparent', 'text-neutral-500', 'font-semibold');
+          panel.classList.remove('hidden');
+        } else {
+          btn.classList.remove('border-black', 'text-black', 'font-bold');
+          btn.classList.add('border-transparent', 'text-neutral-500', 'font-semibold');
+          panel.classList.add('hidden');
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // Modals
+    function openEditProfileModal() {
+      if (!activeClient) return;
+      document.getElementById('modalInputName').value = activeClient.name;
+      document.getElementById('modalInputPhone').value = activeClient.phone || '';
+      const addr = activeClient.address || {};
+      document.getElementById('modalInputAddress').value = addr.line1 || '';
+      document.getElementById('modalInputCity').value = addr.city || '';
+      document.getElementById('modalInputState').value = addr.state || '';
+      document.getElementById('modalInputZip').value = addr.zip || '';
+      document.getElementById('editModal').classList.remove('hidden');
+    }
+
+    function openEditAddressModal() {
+      openEditProfileModal();
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.add('hidden');
+    }
+
+    function handleSaveProfile(e) {
+      e.preventDefault();
+      const updated = {
+        name: document.getElementById('modalInputName').value.trim(),
+        phone: document.getElementById('modalInputPhone').value.trim(),
+        address: {
+          line1: document.getElementById('modalInputAddress').value.trim(),
+          city: document.getElementById('modalInputCity').value.trim(),
+          state: document.getElementById('modalInputState').value.trim(),
+          zip: document.getElementById('modalInputZip').value.trim(),
+          country: 'United States'
+        }
+      };
+
+      const res = updateUserProfile(updated);
+      if (res.success) {
+        activeClient = res.user;
+        renderClientProfile();
+        closeEditModal();
+        showToast('Client profile updated successfully');
+      }
+    }
+
+    function openConciergeModal() {
+      document.getElementById('conciergeModal').classList.remove('hidden');
+    }
+
+    function closeConciergeModal() {
+      document.getElementById('conciergeModal').classList.add('hidden');
+    }
+
+    function handleSendConcierge(e) {
+      e.preventDefault();
+      const note = document.getElementById('conciergeNote').value;
+      closeConciergeModal();
+      showToast('Note dispatched directly to Elena Vance');
+      document.getElementById('conciergeNote').value = '';
+    }
+
+    function showInvoice(orderId) {
+      const order = (activeClient.orders || []).find(o => o.id === orderId);
+      if (!order) return;
+
+      document.getElementById('invoiceOrderId').textContent = `#${order.id}`;
+      document.getElementById('invoiceClientName').textContent = activeClient.name;
+      document.getElementById('invoiceDate').textContent = order.date;
+      document.getElementById('invoiceSubtotal').textContent = `$${order.total.toLocaleString()}.00`;
+      document.getElementById('invoiceTotalPaid').textContent = `$${order.total.toLocaleString()}.00`;
+
+      const container = document.getElementById('invoiceItemsContainer');
+      container.innerHTML = order.items.map(i => `
+        <div class="flex justify-between items-center py-2 text-xs border-b border-neutral-100">
+          <div>
+            <strong class="text-black uppercase">${i.designer}</strong> &bull; ${i.title}
+            <span class="text-neutral-400 block">Size: ${i.size}</span>
+          </div>
+          <span class="font-bold text-black">$${i.price.toLocaleString()}.00</span>
+        </div>
+      `).join('');
+
+      document.getElementById('invoiceModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoiceModal').classList.add('hidden');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastMessage');
+      if (!toast || !text) return;
+      text.textContent = message;
+      toast.classList.remove('translate-y-24');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24');
+      }, 3500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initDashboard();
+    });
+  </script>
+
+  <script>
+    function handleNewsletter(e) {
+      if (e) e.preventDefault();
+      if (typeof showToast === 'function') {
+        showToast('Thank you for joining the VIP Client Salon');
+      } else {
+        alert('Thank you for subscribing to Stackly Private Client VIP.');
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stackly | Luxury Designer Fashion - Clothing, Shoes, Bags, Accessories</title>
+
+  <!-- Google Fonts: Editorial High-Fashion Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Framework CDN for Responsive Layout -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Minimal Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS for FWRD Luxury Styling -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            fwrd: {
+              black: '#000000',
+              charcoal: '#111111',
+              gray: '#707072',
+              lightGray: '#f8f8f8',
+              border: '#e8e8e8',
+              gold: '#c5a059'
+            }
+          },
+          letterSpacing: {
+            luxury: '0.22em',
+            tightLuxury: '0.12em',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body data-page-category="all" class="bg-white text-fwrd-charcoal font-sans antialiased selection:bg-black selection:text-white">
+
+  <!-- ================= TOP LUXURY UTILITY BAR ================= -->
+  <div class="bg-black text-white text-[10.5px] tracking-[0.14em] uppercase py-2 px-4 sm:px-8 flex justify-between items-center border-b border-neutral-900 select-none">
+    <div class="hidden lg:flex items-center space-x-3 text-neutral-400">
+      <span>SHIPPING: <strong class="text-white font-medium">US (USD $)</strong></span>
+      <span class="text-neutral-600">•</span>
+      <span>CONCIERGE: <strong class="text-white font-medium">1-888-555-STACKLY</strong></span>
+    </div>
+    <div class="w-full lg:w-auto text-center font-medium text-neutral-200 tracking-[0.16em]">
+      COMPLIMENTARY 2-DAY EXPRESS SHIPPING & FREE RETURNS ON ALL ORDERS
+    </div>
+    <div class="hidden lg:flex items-center space-x-3 text-neutral-400">
+      <a href="login.html" id="headerUserLabel" class="hover:text-white transition font-medium">SIGN IN / REGISTER</a>
+      <span class="text-neutral-600">•</span>
+      <a href="dashboard.html" class="hover:text-white transition">VIP CLIENT PRIVILEGES</a>
+    </div>
+  </div>
+
+  <!-- ================= STICKY MAIN HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-all shadow-[0_1px_0_0_rgba(0,0,0,0.03)]">
+    <div class="max-w-[1760px] mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 lg:gap-8">
+      
+      <!-- Left: Mobile Menu Toggle & Stackly Brand Logo -->
+      <div class="flex items-center space-x-3 sm:space-x-5 flex-shrink-0">
+        <button onclick="toggleMobileNav()" class="lg:hidden nav-icon-btn -ml-1.5" aria-label="Open Navigation Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Brand Logo on Left Side -->
+        <a href="index.html" class="inline-flex items-center hover:opacity-80 transition py-0.5" aria-label="Stackly Home">
+          <img src="images/logo-transparent.png" alt="Stackly" class="h-8 sm:h-8.5 w-auto object-contain" />
+        </a>
+
+        <span class="hidden 2xl:inline-block text-[9.5px] tracking-[0.25em] text-neutral-400 uppercase border-l border-neutral-200 pl-4 py-0.5 font-light">
+          Runway Edition
+        </span>
+      </div>
+
+      <!-- Center: Category Navigation Links (Stylish Luxury Hierarchy) -->
+      <nav class="hidden lg:flex items-center space-x-5 xl:space-x-7 text-[11.5px] font-medium tracking-[0.18em] uppercase">
+        <a href="index.html" class="main-nav-link is-active text-black font-semibold" data-category="all">All</a>
+        <a href="index.html#whats-new" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="whats-new">What's New</a>
+        <a href="clothing.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="clothing">Clothing</a>
+        <a href="dresses.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="dresses">Dresses</a>
+        <a href="shoes.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="shoes">Shoes</a>
+        <a href="bags.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="bags">Bags</a>
+        <a href="accessories.html" class="main-nav-link text-neutral-500 hover:text-black font-medium" data-category="accessories">Accessories</a>
+        <a href="index.html#sale" class="main-nav-link text-rose-700 hover:text-rose-950 font-semibold" data-category="sale">Sale</a>
+      </nav>
+
+      <!-- Right: Search Capsule, Client Account, Wishlist, Shopping Bag -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2.5 flex-shrink-0">
+        <!-- Live Expandable Luxury Search Capsule -->
+        <div class="nav-search-capsule hidden md:flex items-center">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-400 absolute left-3 pointer-events-none"></i>
+          <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Search designers, styles..." 
+            oninput="handleSearch(this.value)"
+            class="w-36 lg:w-48 focus:w-60 pl-8 pr-7 py-1.5 text-xs bg-transparent border-0 focus:outline-none tracking-wide placeholder:text-neutral-400 placeholder:text-[11px] placeholder:tracking-wider"
+          />
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 text-neutral-400 hover:text-black p-0.5">
+            <i data-lucide="x" class="w-3 h-3"></i>
+          </button>
+        </div>
+
+        <!-- Private Client VIP User Icon -->
+        <a href="login.html" class="nav-icon-btn nav-user-link hidden sm:flex" title="Sign In / Register">
+          <i data-lucide="user" class="w-4.5 h-4.5 stroke-[1.75]"></i>
+        </a>
+
+        <!-- Wishlist Button with Badge -->
+        <button onclick="toggleWishlistDrawer()" class="nav-icon-btn" title="Saved Wishlist">
+          <i data-lucide="heart" class="w-4.5 h-4.5 stroke-[1.75]"></i>
+          <span id="wishlistCountBadge" class="hidden absolute -top-0.5 -right-0.5 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">0</span>
+        </button>
+
+        <!-- Shopping Bag Button with Counter -->
+        <button onclick="toggleCartDrawer()" class="nav-icon-btn" title="Shopping Bag">
+          <i data-lucide="shopping-bag" class="w-4.5 h-4.5 stroke-[1.75]"></i>
+          <span id="cartCountBadge" class="absolute -top-0.5 -right-0.5 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MOBILE NAVIGATION DRAWER ================= -->
+  <aside id="mobileNavDrawer" class="fixed inset-y-0 left-0 w-80 bg-white z-50 p-6 shadow-2xl transform -translate-x-full transition-transform duration-300 overflow-y-auto border-r border-fwrd-border lg:hidden flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-fwrd-border mb-6">
+        <a href="index.html" class="inline-flex items-center" aria-label="Stackly Home">
+          <img src="images/logo-transparent.png" alt="Stackly" class="h-7 w-auto object-contain" />
+        </a>
+        <button onclick="toggleMobileNav()" class="p-1.5 text-neutral-400 hover:text-black rounded-full hover:bg-neutral-100 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Search Field -->
+      <div class="relative mb-6">
+        <input 
+          type="text" 
+          placeholder="Search items, designers..." 
+          oninput="handleSearch(this.value)"
+          class="w-full pl-9 pr-3 py-2 text-xs bg-neutral-50 border border-neutral-200 rounded-none focus:outline-none focus:border-black"
+        />
+        <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-400 absolute left-3 top-3"></i>
+      </div>
+
+      <div class="flex flex-col space-y-1 text-xs font-semibold uppercase tracking-[0.16em]">
+        <a href="index.html" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>All Departments</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="index.html#whats-new" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>What's New</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="clothing.html" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>Clothing</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="dresses.html" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>Dresses</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="shoes.html" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>Shoes</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="bags.html" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>Bags</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="accessories.html" class="py-2.5 px-2 hover:bg-neutral-50 transition border-b border-neutral-100 flex items-center justify-between">
+          <span>Accessories</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400"></i>
+        </a>
+        <a href="index.html#sale" class="py-2.5 px-2 text-rose-700 hover:bg-rose-50 transition flex items-center justify-between font-bold">
+          <span>Sale Reductions</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-rose-700"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Footer -->
+    <div class="pt-6 border-t border-neutral-200 text-[11px] text-neutral-500 space-y-2 uppercase tracking-luxury">
+      <div>VIP Concierge: <strong class="text-black">1-888-555-STACKLY</strong></div>
+      <div class="text-[10px] text-neutral-400">Complimentary 2-Day Express Shipping</div>
+    </div>
+  </aside>
+
+  <!-- ================= CINEMATIC RUNWAY VIDEO HERO ================= -->
+  <section class="relative w-full h-[72vh] min-h-[520px] max-h-[740px] bg-black overflow-hidden flex items-center justify-center text-white select-none">
+    <!-- Background Campaign Video Loop (Vivid Runway Catwalk) -->
+    <video 
+      id="heroCampaignVideo"
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      poster="images/clothing_101_a.webp" 
+      class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.06] transition duration-700"
+    >
+      <source src="videos/runway.mp4" type="video/mp4" />
+      <source src="videos/fashion_runway_hub.mp4" type="video/mp4" />
+      <source src="videos/atelier_craft.mp4" type="video/mp4" />
+    </video>
+    
+    <!-- Ambient Vignette & Gradient Overlays for Video Clarity -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/65"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.55)_100%)]"></div>
+
+    <!-- Centered Editorial Frosted Glass Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 text-center flex flex-col items-center">
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center space-x-2 text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-semibold px-4 py-1.5 bg-white/10 rounded-full border border-white/20 backdrop-blur-md mb-5 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>FALL / WINTER 2026 RUNWAY SALON</span>
+        <span class="text-white/40">•</span>
+        <span>PARIS &amp; MILAN</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-white leading-tight drop-shadow-lg">
+        The Haute Couture Runway
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-xs sm:text-sm text-neutral-200 max-w-xl mx-auto font-light leading-relaxed mt-4 drop-shadow">
+        Experience high-fashion tailoring in motion. Sculpted eveningwear, architectural silhouettes, and iconic runway archives curated for modern luxury collectors.
+      </p>
+
+      <!-- Glass Action Buttons -->
+      <div class="pt-7 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
+        <a 
+          href="clothing.html" 
+          class="w-full sm:w-auto px-8 py-3.5 bg-white text-black text-xs uppercase tracking-luxury font-bold hover:bg-neutral-200 transition shadow-xl flex items-center justify-center space-x-2"
+        >
+          <span>Explore Ready-To-Wear</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <a 
+          href="#department-salons" 
+          class="luxury-glass-btn w-full sm:w-auto px-8 py-3.5 text-white text-xs uppercase tracking-luxury font-bold flex items-center justify-center space-x-2 shadow"
+        >
+          <span>Curated Salons</span>
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+        </a>
+        <a 
+          href="dresses.html" 
+          class="luxury-glass-btn w-full sm:w-auto px-8 py-3.5 text-white text-xs uppercase tracking-luxury font-bold flex items-center justify-center space-x-2 shadow"
+        >
+          <span>Runway Gowns</span>
+        </a>
+      </div>
+
+      <!-- Highlights Bar -->
+      <div class="hidden md:flex items-center space-x-6 mt-8 pt-5 border-t border-white/15 text-[10px] uppercase tracking-luxury text-neutral-300 font-medium">
+        <span>COMPLIMENTARY WHITE-GLOVE DELIVERY</span>
+        <span class="text-white/30">•</span>
+        <span>AUTHENTICITY GUARANTEED</span>
+        <span class="text-white/30">•</span>
+        <span>PRIVATE VIP SALON SESSIONS</span>
+      </div>
+    </div>
+
+    <!-- Floating Video Ambience Toggle Button in Bottom Left Corner -->
+    <div class="absolute bottom-6 left-6 z-20 hidden sm:flex items-center space-x-2.5 backdrop-blur-md bg-black/45 border border-white/20 px-3.5 py-1.5 rounded-full shadow-2xl">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-[10px] uppercase tracking-luxury text-neutral-300 font-medium">Runway Ambience</span>
+      <button 
+        id="heroVideoPlayToggleBtn" 
+        onclick="toggleHeroCampaignVideo()" 
+        class="text-neutral-400 hover:text-white p-1 transition"
+        title="Pause / Play Video"
+      >
+        <i id="heroVideoPlayIcon" data-lucide="pause" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED DEPARTMENT SHOWCASE TILES ================= -->
+  <section id="department-salons" class="max-w-[1720px] mx-auto px-4 sm:px-8 py-8 scroll-mt-16">
+    <div class="text-center mb-6">
+      <span class="text-[11px] uppercase tracking-[0.25em] text-neutral-400 font-semibold">CURATED SALONS</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-tight text-black mt-1">Shop by Department</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
+      <a href="clothing.html" class="group relative aspect-[3/4] bg-neutral-100 overflow-hidden block">
+        <img src="images/clothing_101_a.webp" alt="Clothing" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
+          <span class="text-[10px] tracking-widest text-neutral-300 uppercase">Department</span>
+          <h3 class="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase group-hover:underline">Clothing</h3>
+          <span class="text-[9px] uppercase tracking-luxury text-white/80 mt-1">Shop Ready-To-Wear &rarr;</span>
+        </div>
+      </a>
+      <a href="shoes.html" class="group relative aspect-[3/4] bg-neutral-100 overflow-hidden block">
+        <img src="images/shoes_201_a.webp" alt="Shoes" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
+          <span class="text-[10px] tracking-widest text-neutral-300 uppercase">Department</span>
+          <h3 class="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase group-hover:underline">Shoes</h3>
+          <span class="text-[9px] uppercase tracking-luxury text-white/80 mt-1">Shop Footwear &rarr;</span>
+        </div>
+      </a>
+      <a href="bags.html" class="group relative aspect-[3/4] bg-neutral-100 overflow-hidden block">
+        <img src="images/bags_301_a.webp" alt="Bags" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
+          <span class="text-[10px] tracking-widest text-neutral-300 uppercase">Department</span>
+          <h3 class="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase group-hover:underline">Bags</h3>
+          <span class="text-[9px] uppercase tracking-luxury text-white/80 mt-1">Shop Handbags &rarr;</span>
+        </div>
+      </a>
+      <a href="accessories.html" class="group relative aspect-[3/4] bg-neutral-100 overflow-hidden block">
+        <img src="images/accessories_401_a.webp" alt="Accessories" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
+          <span class="text-[10px] tracking-widest text-neutral-300 uppercase">Department</span>
+          <h3 class="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase group-hover:underline">Accessories</h3>
+          <span class="text-[9px] uppercase tracking-luxury text-white/80 mt-1">Shop Accents &rarr;</span>
+        </div>
+      </a>
+      <a href="dresses.html" class="group relative aspect-[3/4] bg-neutral-100 overflow-hidden block col-span-2 md:col-span-1">
+        <img src="images/dresses_1_a.webp" alt="Dresses" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
+          <span class="text-[10px] tracking-widest text-neutral-300 uppercase">Department</span>
+          <h3 class="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase group-hover:underline">Dresses</h3>
+          <span class="text-[9px] uppercase tracking-luxury text-white/80 mt-1">Shop Gowns &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= BREADCRUMBS & CATEGORY HERO ================= -->
+  <section class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-6 pb-4">
+    <!-- Breadcrumb links -->
+    <nav class="text-[11px] uppercase tracking-luxury text-fwrd-gray mb-3 flex items-center space-x-2">
+      <a href="index.html" class="hover:text-black transition">Home</a>
+      <span>/</span>
+      <span id="heroBreadcrumb" class="text-black font-semibold">All Departments</span>
+    </nav>
+
+    <!-- Page Title & Editorial Category Description -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-fwrd-border pb-6 gap-4">
+      <div>
+        <h1 id="heroCategoryTitle" class="font-serif text-3xl sm:text-5xl font-bold tracking-tight uppercase text-black">
+          The Luxury Designer Catalog
+        </h1>
+        <p id="heroCategoryDesc" class="text-xs sm:text-sm text-fwrd-gray mt-2 max-w-2xl font-light leading-relaxed">
+          Explore all authentic runway collections across Ready-to-Wear, Footwear, Handbags, Fine Accessories, and Eveningwear.
+        </p>
+      </div>
+      <div class="text-xs tracking-luxury text-neutral-500 uppercase font-medium">
+        <span id="totalProductsCount">80</span> PIECES DISCOVERED
+      </div>
+    </div>
+
+    <!-- Subcategory Quick Filter Pills (Dynamic based on selected category) -->
+    <div id="subcategoryPillsContainer" class="flex items-center space-x-2 overflow-x-auto py-4 no-scrollbar border-b border-fwrd-border">
+      <!-- Injected by JavaScript -->
+    </div>
+  </section>
+
+  <!-- ================= CONTROL TOOLBAR (FILTERS, SORTS, GRID VIEW) ================= -->
+  <section class="max-w-[1720px] mx-auto px-4 sm:px-8 py-3 sticky top-[72px] bg-white z-30 border-b border-fwrd-border">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Left: Filter Toggle & Active Chips -->
+      <div class="flex items-center space-x-3">
+        <button 
+          onclick="toggleFilterSidebar()" 
+          class="flex items-center space-x-2 text-xs font-semibold tracking-luxury uppercase border border-black px-4 py-2 hover:bg-black hover:text-white transition"
+        >
+          <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+          <span>Refine Filters</span>
+          <span id="activeFilterBadge" class="hidden bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </button>
+
+        <button 
+          id="clearAllFiltersBtn" 
+          onclick="resetAllFilters()" 
+          class="hidden text-[11px] tracking-tightLuxury uppercase underline text-fwrd-gray hover:text-black transition"
+        >
+          Clear All
+        </button>
+
+        <!-- Active Filter Tags Display -->
+        <div id="activeTagsContainer" class="hidden lg:flex items-center space-x-1.5 overflow-x-auto"></div>
+      </div>
+
+      <!-- Right: Grid View & Sorting -->
+      <div class="flex items-center space-x-5">
+        <!-- View Toggle (2 vs 4 cols) -->
+        <div class="hidden sm:flex items-center space-x-1 text-neutral-400">
+          <span class="text-[11px] tracking-luxury uppercase font-medium mr-1 text-black">VIEW:</span>
+          <button onclick="setGridColumns(2)" id="btnGrid2" class="p-1.5 hover:text-black transition text-neutral-400" title="Editorial 2-Column View">
+            <i data-lucide="columns-2" class="w-4 h-4"></i>
+          </button>
+          <button onclick="setGridColumns(4)" id="btnGrid4" class="p-1.5 text-black hover:text-black transition" title="Grid 4-Column View">
+            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Sort Dropdown -->
+        <div class="flex items-center space-x-2">
+          <label for="sortSelect" class="text-[11px] tracking-luxury uppercase font-medium text-fwrd-gray hidden sm:inline">SORT BY:</label>
+          <select 
+            id="sortSelect" 
+            onchange="handleSort(this.value)"
+            class="text-xs uppercase tracking-tightLuxury border border-neutral-300 py-2 pl-3 pr-8 bg-white focus:outline-none focus:border-black font-medium cursor-pointer rounded-none"
+          >
+            <option value="featured">FWRD Picks (Featured)</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest Arrivals</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MAIN CONTENT: FILTER SIDEBAR & PRODUCT GRID ================= -->
+  <main class="max-w-[1720px] mx-auto px-4 sm:px-8 py-8 flex relative min-h-screen">
+    
+    <!-- Filter Sidebar Drawer -->
+    <aside id="filterSidebar" class="fixed inset-y-0 left-0 w-80 sm:w-96 bg-white z-50 p-6 shadow-2xl transform -translate-x-full transition-transform duration-300 overflow-y-auto border-r border-fwrd-border">
+      <div class="flex items-center justify-between pb-4 border-b border-fwrd-border mb-6">
+        <h2 class="text-sm font-bold uppercase tracking-luxury">Refine Selection</h2>
+        <button onclick="toggleFilterSidebar()" class="p-1 text-neutral-500 hover:text-black" aria-label="Close Filter Drawer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Filter Section: Designers -->
+      <div class="mb-6 border-b border-fwrd-border pb-5">
+        <h3 class="text-xs font-bold uppercase tracking-luxury mb-3 flex justify-between items-center">
+          <span>Designers</span>
+          <span class="text-[10px] text-neutral-400 font-normal">A - Z</span>
+        </h3>
+        <div class="space-y-1.5 max-h-48 overflow-y-auto pr-1 text-xs" id="designerFilterList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Filter Section: Size -->
+      <div class="mb-6 border-b border-fwrd-border pb-5">
+        <h3 class="text-xs font-bold uppercase tracking-luxury mb-3">Size</h3>
+        <div class="grid grid-cols-4 gap-2" id="sizeFilterList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Filter Section: Color Swatches -->
+      <div class="mb-6 border-b border-fwrd-border pb-5">
+        <h3 class="text-xs font-bold uppercase tracking-luxury mb-3">Color</h3>
+        <div class="flex flex-wrap gap-2.5" id="colorFilterList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Filter Section: Price Range -->
+      <div class="mb-6 border-b border-fwrd-border pb-5">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-xs font-bold uppercase tracking-luxury">Price Under</h3>
+          <span id="priceDisplay" class="text-xs font-semibold">$5,000+</span>
+        </div>
+        <input 
+          type="range" 
+          id="priceRange" 
+          min="100" 
+          max="5000" 
+          step="50" 
+          value="5000" 
+          oninput="handlePriceFilter(this.value)"
+          class="w-full accent-black cursor-pointer"
+        />
+        <div class="flex justify-between text-[10px] text-neutral-400 mt-1">
+          <span>$100</span>
+          <span>$5,000+</span>
+        </div>
+      </div>
+
+      <!-- Filter Section: Type / Length -->
+      <div class="mb-8">
+        <h3 class="text-xs font-bold uppercase tracking-luxury mb-3">Category Type</h3>
+        <div class="space-y-1.5 text-xs" id="lengthFilterList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Apply & Reset Buttons in Drawer -->
+      <div class="sticky bottom-0 bg-white pt-4 border-t border-fwrd-border flex space-x-3">
+        <button onclick="resetAllFilters()" class="w-1/3 py-3 border border-black text-xs uppercase tracking-luxury font-semibold hover:bg-neutral-100 transition">
+          Reset
+        </button>
+        <button onclick="toggleFilterSidebar()" class="w-2/3 py-3 bg-black text-white text-xs uppercase tracking-luxury font-semibold hover:bg-neutral-800 transition">
+          View Results
+        </button>
+      </div>
+    </aside>
+
+    <!-- Overlay when sidebar is open -->
+    <div id="filterOverlay" onclick="toggleFilterSidebar()" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+    <!-- Product Grid Container -->
+    <section class="w-full">
+      <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-12">
+        <!-- Products injected dynamically by app.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-24">
+        <div class="font-serif text-2xl uppercase tracking-wider mb-2">No Items Found</div>
+        <p class="text-xs text-fwrd-gray mb-6 max-w-sm mx-auto">No styles match your selected filters. Try broadening your criteria or reset filters.</p>
+        <button onclick="resetAllFilters()" class="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-luxury font-semibold hover:bg-neutral-800 transition">
+          Reset All Filters
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= CINEMATIC ATELIER & RUNWAY EXPERIENCE SECTION ================= -->
+  <section class="max-w-[1720px] mx-auto px-4 sm:px-8 py-16">
+    <div class="relative bg-black text-white overflow-hidden rounded-sm border border-neutral-800 shadow-2xl">
+      <!-- Background Atelier Video Loop -->
+      <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
+        <video 
+          id="atelierBgVideo"
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          poster="images/dresses_1_a.webp" 
+          class="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08]"
+        >
+          <source src="videos/atelier_craft.mp4" type="video/mp4" />
+          <source src="videos/fashion_runway_hub.mp4" type="video/mp4" />
+          <source src="videos/runway.mp4" type="video/mp4" />
+        </video>
+        <!-- Gradients for pristine contrast -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/90"></div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="relative z-10 py-16 sm:py-24 px-6 sm:px-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Left: Editorial Story -->
+        <div class="lg:col-span-7 max-w-2xl">
+          <div class="inline-flex items-center space-x-2 text-[10px] uppercase tracking-[0.25em] text-neutral-300 font-semibold px-3.5 py-1.5 bg-white/10 rounded-full border border-white/20 backdrop-blur-md mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>BEHIND THE RUNWAY</span>
+            <span class="text-white/40">•</span>
+            <span>HAUTE COUTURE ATELIER</span>
+          </div>
+
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-tight">
+            Artisanal Precision In Every Stitch
+          </h2>
+
+          <p class="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed mt-4 mb-6">
+            Witness the creation of contemporary couture. Each garment in the Stackly Private Salon is sculpted with archival European silks, hand-worked Italian leathers, and tailored by master ateliers whose heritages span generations.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a 
+              href="clothing.html" 
+              class="px-8 py-3.5 bg-white text-black text-xs uppercase tracking-luxury font-bold hover:bg-neutral-200 transition shadow-lg flex items-center justify-center space-x-2"
+            >
+              <span>Explore The Atelier Collection</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+            <a 
+              href="dashboard.html" 
+              class="luxury-glass-btn px-8 py-3.5 text-white text-xs uppercase tracking-luxury font-bold flex items-center justify-center space-x-2"
+            >
+              <span>VIP Salon Reservation</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: 3 Frosted Glass Craftsmanship Cards -->
+        <div class="lg:col-span-5 grid grid-cols-1 gap-3.5">
+          <div class="luxury-glass-card p-5 rounded-sm">
+            <span class="text-[10px] uppercase tracking-[0.22em] text-neutral-400 font-bold block mb-1">01 / ARCHIVAL MILL FABRICS</span>
+            <h4 class="font-serif text-base font-bold uppercase text-white">Pure Mulberry Silk &amp; Virgin Wool</h4>
+            <p class="text-[11px] text-neutral-300 font-light mt-1">Sourced from historic textile houses in Como and Biella.</p>
+          </div>
+
+          <div class="luxury-glass-card p-5 rounded-sm">
+            <span class="text-[10px] uppercase tracking-[0.22em] text-neutral-400 font-bold block mb-1">02 / RUNWAY CATWALK DIRECT</span>
+            <h4 class="font-serif text-base font-bold uppercase text-white">Direct-From-Salon Releases</h4>
+            <p class="text-[11px] text-neutral-300 font-light mt-1">Pieces straight from Milan and Paris fashion weeks.</p>
+          </div>
+
+          <div class="luxury-glass-card p-5 rounded-sm">
+            <span class="text-[10px] uppercase tracking-[0.22em] text-neutral-400 font-bold block mb-1">03 / CONCIERGE TAILORING</span>
+            <h4 class="font-serif text-base font-bold uppercase text-white">Bespoke Fit Consultations</h4>
+            <p class="text-[11px] text-neutral-300 font-light mt-1">Complimentary private tailoring available for VIP patrons.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-black text-white pt-16 pb-12 border-t border-neutral-800 text-xs">
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-neutral-800">
+      
+      <!-- Brand & VIP Concierge -->
+      <div class="lg:col-span-2 pr-4">
+        <a href="index.html" class="inline-block mb-4" aria-label="Stackly Home">
+          <img src="images/logo-white.png" alt="Stackly" class="h-8 sm:h-9 w-auto object-contain" />
+        </a>
+        <p class="text-neutral-400 leading-relaxed text-xs max-w-md mb-6">
+          Stackly is the premier global editorial destination for luxury designer fashion, offering an impeccably curated roster of world-renowned designers and emerging innovators across Clothing, Shoes, Bags, Accessories, and Dresses.
+        </p>
+        <div class="space-y-2 text-neutral-300 text-[11px] uppercase tracking-luxury">
+          <p>VIP CLIENT SERVICES: <strong class="text-white">1-888-555-STACKLY</strong></p>
+          <p>PERSONAL STYLING: <strong class="text-white">STYLING@STACKLY.COM</strong></p>
+        </div>
+      </div>
+
+      <!-- Column: Customer Service -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Client Care</h4>
+        <ul class="space-y-2.5 text-neutral-400">
+          <li><a href="#" class="hover:text-white transition">Complimentary Shipping</a></li>
+          <li><a href="#" class="hover:text-white transition">Easy Returns & Exchanges</a></li>
+          <li><a href="#" class="hover:text-white transition">Order Status & Tracking</a></li>
+          <li><a href="#" class="hover:text-white transition">Authenticity Guarantee</a></li>
+          <li><a href="#" class="hover:text-white transition">Size & Fit Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Departments -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Departments</h4>
+        <ul class="space-y-2.5 text-neutral-400">
+          <li><a href="clothing.html" class="hover:text-white transition">Designer Clothing</a></li>
+          <li><a href="shoes.html" class="hover:text-white transition">Designer Shoes</a></li>
+          <li><a href="bags.html" class="hover:text-white transition">Designer Bags</a></li>
+          <li><a href="accessories.html" class="hover:text-white transition">Designer Accessories</a></li>
+          <li><a href="dresses.html" class="hover:text-white transition">Designer Dresses</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Newsletter VIP Signup -->
+      <div>
+        <h4 class="font-semibold tracking-luxury uppercase text-white mb-4 text-xs">Private Client VIP</h4>
+        <p class="text-neutral-400 text-xs mb-4">Subscribe to receive 10% off your first purchase and private sale invitations.</p>
+        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+          <input 
+            type="email" 
+            placeholder="Enter your email address" 
+            required
+            class="w-full bg-neutral-900 border border-neutral-700 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white transition"
+          />
+          <button type="submit" class="w-full bg-white text-black py-2 text-xs uppercase tracking-luxury font-bold hover:bg-neutral-200 transition">
+            Join VIP Client
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Social Media Icons Row (All Linking to 404 Page) -->
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-8 pb-6 border-b border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="text-[10.5px] uppercase tracking-[0.22em] text-neutral-400 font-medium">Follow The Runway:</span>
+        <span class="text-xs font-serif italic text-neutral-300">@StacklyOfficial</span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <!-- Instagram -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Instagram" title="Instagram">
+          <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="TikTok" title="TikTok">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.28 8.28 0 0 0 4.85 1.54V6.84a4.83 4.83 0 0 1-1.08-.15z"/>
+          </svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Pinterest" title="Pinterest">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.546.535 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="X (Twitter)" title="X">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="YouTube" title="YouTube">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="404.html" class="w-8 h-8 rounded-full border border-neutral-700 hover:border-white text-neutral-400 hover:text-white flex items-center justify-center transition hover:bg-neutral-900" aria-label="Facebook" title="Facebook">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-neutral-500 text-[11px] tracking-tightLuxury uppercase gap-4">
+      <div>&copy; 2026 STACKLY. ALL RIGHTS RESERVED. FORWARD BY ELYSE WALKER.</div>
+      <div class="flex space-x-6">
+        <a href="404.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="404.html" class="hover:text-white transition">Terms of Service</a>
+        <a href="404.html" class="hover:text-white transition">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= QUICK VIEW MODAL ================= -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 hidden fade-in">
+    <div class="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl flex flex-col md:flex-row">
+      <!-- Close button -->
+      <button onclick="closeQuickView()" class="absolute top-4 right-4 z-10 p-2 text-black hover:opacity-60 transition" aria-label="Close modal">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Left: Modal Photo Gallery -->
+      <div class="w-full md:w-1/2 p-4 bg-fwrd-lightGray flex flex-col items-center justify-center">
+        <div class="relative w-full aspect-fashion overflow-hidden">
+          <img id="qvMainImage" src="" alt="Product preview" class="w-full h-full object-cover object-top transition duration-300" />
+        </div>
+        <!-- Thumbnails -->
+        <div class="flex space-x-2 mt-3" id="qvThumbnails"></div>
+      </div>
+
+      <!-- Right: Product Details & Add to Bag -->
+      <div class="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] uppercase tracking-luxury text-fwrd-gray mb-1" id="qvBadge">NEW SEASON</div>
+          <h2 class="font-serif text-2xl font-bold uppercase tracking-wider text-black" id="qvDesigner">DESIGNER</h2>
+          <h3 class="text-sm text-neutral-600 mt-1 mb-3" id="qvTitle">Product Name</h3>
+          <div class="text-lg font-bold text-black mb-6" id="qvPrice">$0.00</div>
+
+          <!-- Description & Fabric -->
+          <p class="text-xs text-fwrd-gray leading-relaxed mb-6" id="qvDescription">Description</p>
+          <div class="text-[11px] text-neutral-500 mb-6 space-y-1 border-t border-b border-fwrd-border py-3">
+            <p><strong>FABRIC:</strong> <span id="qvFabric">100% Silk</span></p>
+            <p><strong>ORIGIN:</strong> Made in Italy</p>
+            <p><strong>CARE:</strong> Specialist clean</p>
+          </div>
+
+          <!-- Size Selector -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center text-xs uppercase tracking-luxury font-semibold mb-2">
+              <span>SELECT SIZE</span>
+              <a href="#" class="underline text-neutral-400 hover:text-black">Fit Guide</a>
+            </div>
+            <div class="grid grid-cols-4 sm:grid-cols-5 gap-2" id="qvSizeContainer"></div>
+          </div>
+        </div>
+
+        <div>
+          <button 
+            id="qvAddToCartBtn"
+            onclick="addQuickViewToCart()" 
+            class="w-full py-3.5 bg-black text-white text-xs uppercase tracking-luxury font-bold hover:bg-neutral-800 transition flex items-center justify-center space-x-2"
+          >
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span>Add To Shopping Bag</span>
+          </button>
+          <p class="text-[10px] text-center uppercase tracking-tightLuxury text-neutral-400 mt-2">
+            Complimentary 2-Day Express Shipping & Free Returns
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SHOPPING BAG DRAWER ================= -->
+  <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full sm:w-[450px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Header -->
+    <div class="p-6 border-b border-fwrd-border flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        <h3 class="text-sm font-bold uppercase tracking-luxury">Shopping Bag (<span id="cartCountTitle">0</span>)</h3>
+      </div>
+      <button onclick="toggleCartDrawer()" class="p-1 hover:opacity-60 transition" aria-label="Close Bag">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="bg-neutral-50 px-6 py-3 border-b border-fwrd-border text-[11px] tracking-tightLuxury">
+      <div id="freeShippingStatus" class="font-medium text-black">Complimentary Express Shipping Unlocked!</div>
+      <div class="w-full bg-neutral-200 h-1.5 mt-2 rounded-full overflow-hidden">
+        <div id="shippingProgressBar" class="bg-black h-full transition-all duration-300" style="width: 100%"></div>
+      </div>
+    </div>
+
+    <!-- Items List -->
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-6 space-y-6">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <!-- Subtotal & Checkout -->
+    <div class="p-6 border-t border-fwrd-border bg-white space-y-4">
+      <div class="space-y-1.5 text-xs">
+        <div class="flex justify-between text-neutral-500">
+          <span>Subtotal</span>
+          <span id="cartSubtotal" class="text-black font-semibold">$0.00</span>
+        </div>
+        <div class="flex justify-between text-neutral-500">
+          <span>Complimentary Express Shipping</span>
+          <span class="text-black font-semibold">FREE</span>
+        </div>
+        <div id="promoRow" class="hidden flex justify-between text-emerald-700">
+          <span>VIP Promo Discount</span>
+          <span id="cartDiscount">-$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm font-bold pt-2 border-t border-fwrd-border">
+          <span>Estimated Total</span>
+          <span id="cartTotal">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Promo code input -->
+      <div class="flex space-x-2">
+        <input 
+          type="text" 
+          id="promoInput" 
+          placeholder="Promo Code (STACKLY10)" 
+          class="flex-1 text-xs uppercase px-3 py-2 border border-fwrd-border focus:outline-none focus:border-black"
+        />
+        <button onclick="applyPromoCode()" class="px-4 py-2 bg-neutral-100 hover:bg-black hover:text-white text-xs uppercase tracking-tightLuxury font-semibold transition">
+          Apply
+        </button>
+      </div>
+
+      <button onclick="checkoutMock()" class="w-full py-4 bg-black text-white text-xs uppercase tracking-luxury font-bold hover:bg-neutral-800 transition flex justify-center items-center space-x-2">
+        <span>Proceed To Secure Checkout</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= WISHLIST DRAWER ================= -->
+  <div id="wishlistDrawer" class="fixed inset-y-0 right-0 w-full sm:w-[420px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-6 border-b border-fwrd-border flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="heart" class="w-5 h-5"></i>
+        <h3 class="text-sm font-bold uppercase tracking-luxury">Wishlist (<span id="wishlistCountTitle">0</span>)</h3>
+      </div>
+      <button onclick="toggleWishlistDrawer()" class="p-1 hover:opacity-60 transition" aria-label="Close Wishlist">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div id="wishlistItemsList" class="flex-1 overflow-y-auto p-6 space-y-6">
+      <!-- Items dynamically populated -->
+    </div>
+  </div>
+
+  <!-- Drawer Backdrop -->
+  <div id="drawerOverlay" onclick="closeAllDrawers()" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-black text-white text-xs uppercase tracking-luxury px-6 py-3.5 shadow-2xl flex items-center space-x-3 transform translate-y-24 transition-transform duration-300">
+    <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">Item added to your bag</span>
+  </div>
+
+  <!-- Pure HTML, CSS, JavaScript Architecture Scripts -->
+  <script src="data.js"></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function toggleHeroCampaignVideo() {
+      const vid = document.getElementById('heroCampaignVideo');
+      const icon = document.getElementById('heroVideoPlayIcon');
+      if (!vid) return;
+      if (vid.paused) {
+        vid.play();
+        if (icon) icon.setAttribute('data-lucide', 'pause');
+      } else {
+        vid.pause();
+        if (icon) icon.setAttribute('data-lucide', 'play');
+      }
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    }
+  </script>
+</body>
+</html>
